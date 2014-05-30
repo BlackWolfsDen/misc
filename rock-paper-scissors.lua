@@ -3,7 +3,7 @@ Rock, Paper, Scissor Game
 Original script made by Billtheslug.
 Updated and converted to eluna by ToxicDev.
 Version 1.1
-modified by slp13at420 into gambling game.
+modified by slp13at420 to gamble gold.
 ]]--
 
 local NPC_ID = 190002
