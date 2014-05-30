@@ -1,6 +1,6 @@
 -- Guild Level new/missed guild Work-around . requires Eluna since TC cant get its head outta its ass
 -- And Eluna events seem to fire consistantly
--- hey you wanted a fix so either wait of use eluna.
+-- hey you wanted a fix so either wait, or use Eluna.  --?GOT ELUNA?--
 -- just add to your scripts folder and restart . any newly created guild created will get added
 -- to the sql table.
 -- or a if a player logs in belonging to a guild not yet added. then this will add it.
