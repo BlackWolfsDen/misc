@@ -4,6 +4,7 @@ Original script made by Billtheslug.
 Updated and converted to eluna by ToxicDev.
 Version 1.1
 modified by slp13at420 to gamble gold.
+Version 1.2
 ]]--
 
 local NPC_ID = 190002
