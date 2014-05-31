@@ -16,11 +16,26 @@ local Gld = WorldDBQuery("SELECT guildname, guildid, leaderguid, level, xp FROM 
 					leaderguid = Gld:GetUInt32(2),
 					level = Gld:GetUInt32(3),
 					xp = Gld:GetUInt32(4)					
-											};
+							};
 		until not Gld:NextRow()
 	end
 end
 LoadGL()
+
+function GLupdate(key, ...)
+	local Query = {
+		[1] = "UPDATE characters.guild_level SET `%s` = '%s' WHERE `guildid` = '%s';"
+				};
+	if(key == 1) then
+		local subtable, value, id = ...
+		local qs = string.format(Query[key], ...)
+		WorldDBQuery(qs)
+		GuildLevel[id] = {
+				[subtable] = value
+						};
+--		print(GuildLevel[id][subtable])
+	end
+end
 
 function Newguild(_, guildid, leader, guildname)
 	WorldDBQuery("INSERT INTO characters1.guild_level SET `guildid` = '"..player:GetGuildId().."';");
@@ -31,21 +46,6 @@ function Newguild(_, guildid, leader, guildname)
 end
 
 RegisterGuildEvent(5, Newguild)
-
-function GLupdate(key, ...)
-	local Query = {
-		[1] = "UPDATE characters1.guild_level SET `%s` = '%s' WHERE `guildid` = '%s';"
-				};
-	if(key == 1) then
-		local subtable, value, id = ...
-		local qs = string.format(Query[key], ...)
-		WorldDBQuery(qs)
-		GuildLevel[id] = {
-				[subtable] = value
-						};
-						print(GuildLevel[id][subtable])
-	end
-end
 
 function GuildLevel_Add(eventid, player)
 	if(player:GetGuildId()~=nil)then
