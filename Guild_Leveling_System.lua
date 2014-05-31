@@ -6,7 +6,7 @@
 GuildLevel = {};
 
 local function LoadGL()
-local Gld = WorldDBQuery("SELECT guildname, guildid, leaderguid, level, xp FROM characters1.guild_level;")
+local Gld = WorldDBQuery("SELECT guildname, guildid, leaderguid, level, xp FROM characters.guild_level;")
 	if(Gld)then
 		repeat
 			GuildLevel[Gld:GetUInt32(1)] = {
@@ -37,7 +37,7 @@ function GLupdate(key, ...)
 end
 
 function Newguild(_, guildid, leader, guildname)
-	WorldDBQuery("INSERT INTO characters1.guild_level SET `guildid` = '"..player:GetGuildId().."';");
+	WorldDBQuery("INSERT INTO characters.guild_level SET `guildid` = '"..player:GetGuildId().."';");
 	GLupdate(1, "guildname", player:GetGuildName(), player:GetGuildId())
 	GLupdate(1, "leaderguid", player:GetGuild():GetLeaderGUID(), player:GetGuildId())
 	GLupdate(1, "level", 1, player:GetGuildId())
@@ -49,7 +49,7 @@ RegisterGuildEvent(5, Newguild)
 function GuildLevel_Add(eventid, player)
 	if(player:GetGuildId()~=nil)then
 		if(GuildLevel[player:GetGuildId()]==nil)then
-			WorldDBQuery("INSERT INTO characters1.guild_level SET `guildid` = '"..player:GetGuildId().."';");
+			WorldDBQuery("INSERT INTO characters.guild_level SET `guildid` = '"..player:GetGuildId().."';");
 			GLupdate(1, "guildname", player:GetGuildName(), player:GetGuildId())
 			GLupdate(1, "leaderguid", player:GetGuild():GetLeaderGUID(), player:GetGuildId())
 			GLupdate(1, "level", 1, player:GetGuildId())
