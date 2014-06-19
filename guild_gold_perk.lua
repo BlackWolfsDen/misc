@@ -1,3 +1,5 @@
+-- this is FoeReapers script from ArcEmu. all i did was mod it to Eluna.
+
 function GBank_Loot(eventid, player, gold)
 	local currency = ""
 	local convert = 0
