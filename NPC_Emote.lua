@@ -6,7 +6,7 @@
 local Emotemax = 20
 local percent = 0.25
 local NPCEMOTEIDS = {}
-local NPCEMOTEIDS = {{100},{3100}};
+local NPCEMOTEIDS = {{3100},{3116},{3127},{10685}};
 				
 local function NPC_EMOTE(event, creature, player, emoteid)
 
