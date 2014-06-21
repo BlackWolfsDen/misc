@@ -16,10 +16,8 @@ local Reaction = math.random(1, Emotemax+1)
 	if(emoteid==Reactor)then
 		if(Reaction < (Emotemax-(Emotemax*percent)))then
 			creature:Emote(Reaction)
-			print("emote")
 		else
 			creature:AttackStart(player)
-			print("attack")
 		end
 	end
 end
