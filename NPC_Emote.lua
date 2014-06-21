@@ -17,6 +17,7 @@ local Reaction = math.random(1, Emotemax+1)
 		if(Reaction < (Emotemax-(Emotemax*percent)))then
 			creature:Emote(Reaction)
 		else
+			creature:SendUnitYell("!!How Dare You!!",1)
 			creature:AttackStart(player)
 		end
 	end
