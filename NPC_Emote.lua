@@ -11,9 +11,10 @@ local NPCEMOTEIDS = {{3100},{3116},{3127},{10685}};-- creature entry id's
 				
 local function NPC_EMOTE(event, creature, player, emoteid)
 
+local chance = math.random(1, Emotemax)
 local Reaction = math.random(1, Emotemax)
 
-	if(Reaction < (Emotemax-(Emotemax*percent)))then
+	if(chance < (Emotemax-(Emotemax*percent)))then
 		creature:Emote(Reaction)
 	else
 		creature:SendUnitYell("!!How Dare You!!",0)
