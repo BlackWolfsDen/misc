@@ -52,7 +52,7 @@ function GBank_Loot(eventid, player, gold)
 			player:GetGuild():DepositBankMoney(player, (gold*0.1))
 			player:SendBroadcastMessage("You loot "..Money.Gold..Money.SilverComma..Money.Silver..Money.CopperComma..Money.Copper..". ("..(math.floor(gold*convert)/10^0)..currency.." deposited to guild bank)")
 		else
-			plr:SendBroadcastMessage("You loot "..Money.Gold..Money.SilverComma..Money.Silver..Money.CopperComma..Money.Copper.."")
+			player:SendBroadcastMessage("You loot "..Money.Gold..Money.SilverComma..Money.Silver..Money.CopperComma..Money.Copper.."")
 		end
 	end
 end
