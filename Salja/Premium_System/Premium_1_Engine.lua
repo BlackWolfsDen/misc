@@ -36,6 +36,7 @@ RegisterPlayerEvent(3, PremiumOnLogin)
 
 local function UnSummonPremiumVendor(eventid, timer, player, creature)
 	creature:DespawnOrUnsummon()
+	WorldDBQuery("DELETE FROM world.creature WHERE `guid` = '"..creature:GetGUIDLow().."';") 
 end
 
 local function SummonPremiumVendor(player)
