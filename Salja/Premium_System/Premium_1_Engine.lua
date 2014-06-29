@@ -3,9 +3,7 @@
 -- NOTE: need to insert character_premium.sql in your auth.account database.table
 -- just add 1 column to your auth.account table:
 -- name `premium` : Datatype = TINYINT : Length/Set = 1 : Unsigned = checked : Default = 0
-
--- NOT YET TESTED . just theoretical . I MUST test this FIRST .. give it a good work over  .. make it smooooooootttthhhhhhhhhh. yea ... ocd...
--- i will remove lines 6 3x when its done
+-- then just add the npc vendor to your world.creature_template table.
 -- for TrintyCore2 3.3.5 Eluna
 local npcid = 101
 BUFFS = {};
