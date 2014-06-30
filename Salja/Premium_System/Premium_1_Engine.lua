@@ -35,13 +35,13 @@ end
 RegisterPlayerEvent(3, PremiumOnLogin) 
 
 local function UnSummonPremiumVendor(eventid, timer, player, creature)
-	creature:DespawnOrUnsummon()
+	creature:DespawnOrUnsummon(0)
 	WorldDBQuery("DELETE FROM world.creature WHERE `guid` = '"..creature:GetGUIDLow().."';") 
 end
 
 local function SummonPremiumVendor(player)
 	if(PREM[player:GetAccountId()].Premium==1)then
-		PerformIngameSpawn(1, PREM["SERVER"].vendor_id, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 90000, 1)
+		PerformIngameSpawn(1, PREM["SERVER"].vendor_id, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 0, 90000, 1)
 	end
 end
 
