@@ -6,12 +6,16 @@
 -- then just add the npc vendor to your world.creature_template table.
 -- for TrintyCore2 3.3.5 Eluna
 local npcid = 101
+
 BUFFS = {};
 PREM = {};
+
 local BUFFS = {48074,43223,36880,467,48469,48162,23948,24752,16877,10220,13033,11735,10952};
+
 PREM["SERVER"] = {
-		vendor_id = npcid
-				};
+    vendor_id = npcid
+};
+
 print ("Salja's Premium System Table: initialized and allocated.")
 
 local function PremiumOnLogin(event, player)  -- Send a welcome massage to player and tell him is premium or not
@@ -21,15 +25,15 @@ local Q = WorldDBQuery("SELECT username, premium FROM auth.account WHERE `id` = 
 PREM[player:GetAccountId()] = {
 	Name = Q:GetString(0),
 	Premium = Q:GetUInt32(1)
-				};
+};
 			
 	if(PREM[player:GetAccountId()].Premium==1)then
 		player:SendBroadcastMessage("|CFFE55BB0[Premium]|r|CFFFE8A0E Welcome "..player:GetName().." you are Premium.|r")
 	else
 		player:SendBroadcastMessage("|CFFE55BB0[Premium]|r|CFFFE8A0E Welcome "..player:GetName()..".|r")
 		player:SendBroadcastMessage("|CFFE55BB0[Premium]|r|CFFFE8A0E You can donate to earn the Premium Rank.|r")
-    	end
-print(PREM[player:GetAccountId()].Name.." :Premium table loaded.")
+    end
+    print(PREM[player:GetAccountId()].Name.." :Premium table loaded.")
 end
 
 RegisterPlayerEvent(3, PremiumOnLogin) 
@@ -90,8 +94,7 @@ function OnPremiumSelect(event, player, unit, sender, intid, code)
 		player:DurabilityRepairAll(100,100)
 	end
 	if (intid==7) then -- Reset talent points. Salja's idea.
-		player:SetFreeTalentPoints(78, 0)
-		player:SetFreeTalentPoints(78, 1)
+		player:ResetTalents()
 		player:SendBroadcastMessage("|cff00cc00All your talents are reset!|r")
 	end
 	if(intid > 7) then -- Go back to main menu
