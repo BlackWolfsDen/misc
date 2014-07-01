@@ -39,12 +39,12 @@ local class = player:GetClass()
         -- Selected the option for his own class, add items
         for _,v in ipairs(T[class]) do
             player:AddItem(v, 1)
+            player:GossipComplete()
         end
     else
         player:SendNotification("That is not for your class.")
         OnGossipHello(event, player, creature)
     end
-player:GossipComplete()
 end
 
 RegisterCreatureGossipEvent(npcid, 1, OnGossipHello)
