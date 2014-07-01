@@ -1,6 +1,6 @@
 -- By Rochet2 
 -- lightly touched up by slp13at420
--- a dynamic tabled loopy thingy vendor what'sa mah-hooy.!! ITS Another THing-a-mah-jigger
+-- a dynamic tabled loopy thingy vendor what'sa mah-hooy.!! ITS Another THing-a-mah-jigger !!
 -- a simple, easy to edit starter gear vendor with class icons. just change or add item ids to each class table key.
 -- See class id values here:
 -- http://collab.kpsn.org/display/tc/ChrClasses.dbc+tc2
