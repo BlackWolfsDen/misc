@@ -1,3 +1,5 @@
+-- idea by 125125
+-- code by slp13at420
 local VIP_Gear = {}
 local VIP_Gear = {2586,11508,12064,17,192}
 
