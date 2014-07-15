@@ -1,16 +1,16 @@
 -- idea by 125125
 -- code by slp13at420
-local VIP_Gear = {}
-local VIP_Gear = {2586,11508,12064,17,192} -- Robe, Slippers, Hood, Martins Fury, Martins Staff)
+local GM_Gear = {}
+local GM_Gear = {2586,11508,12064,17,192} -- Robe, Slippers, Hood, Martins Fury, Martins Staff)
 
-function VIP_gearme(event, player, message, type, language)
+function GM_gearme(event, player, message, type, language)
 	if(message == "#gmgearme")then
 		if(player:GetGMRank()>=1)then
-			for _, v in ipairs(VIP_Gear) do
+			for _, v in ipairs(GM_Gear) do
 				player:AddItem(v, 1)
 			end
 		end
 	end
 end
 
-RegisterPlayerEvent(18, VIP_gearme)
+RegisterPlayerEvent(18, GM_gearme)
