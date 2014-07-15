@@ -1,7 +1,7 @@
 -- idea by 125125
 -- code by slp13at420
 local VIP_Gear = {}
-local VIP_Gear = {2586,11508,12064,17,192}
+local VIP_Gear = {2586,11508,12064,17,192} -- Robe, Slippers, Hood, Martins Fury, Martins Staff)
 
 function VIP_gearme(event, player, message, type, language)
 	if(message == "#gmgearme")then
