@@ -1,0 +1,14 @@
+local VIP_Gear = {}
+local VIP_Gear = {12345,12345,12345,12345,12345}
+
+function VIP_gearme(event, player, message, type, language)
+	if(message == "#vipgearme")then
+		if(player:GetGMRank()==1)then
+			for _, v in ipairs(VIP_Gear) do
+				player:AddItem(v, 1)
+			end
+		end
+	end
+end
+
+RegisterPlayerEvent(18, VIP_gearme)
