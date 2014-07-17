@@ -1,3 +1,4 @@
+-- a simple little system with a lot of potential
 -- Premium System by Salja of emudevs.com
 -- updated by slp13at420 of emudevs.com
 -- NOTE: need to insert character_premium.sql in your auth.account database.table
