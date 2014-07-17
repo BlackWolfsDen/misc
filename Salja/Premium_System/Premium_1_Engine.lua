@@ -125,6 +125,7 @@ end
 local function PremiumVendorSelect(event, player, creature, sender, intid, code)	
 VendorRemoveAllItems(101)
 	if(intid==1011) then
+		creature:RegisterEvent(UnSummonPremiumVendor, 1, 1, player, creature)
 	end
     if(intid==1012)then
     	AddVendorItem(PREM["SERVER"].vendor_id, 17,1,1,0)
