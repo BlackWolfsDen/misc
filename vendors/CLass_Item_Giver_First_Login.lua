@@ -20,7 +20,6 @@ local StartGear = {
 
 function Class_Gear(event, player)
 	for _, v in ipairs(StartGear[player:GetClass()]) do
-print(v)
 		if((player:GetItemCount(v)) == (0 or nil))then
 			player:AddItem(v, 1)
 		end
