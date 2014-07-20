@@ -1,3 +1,7 @@
+--[[
+by slp13at420 of EmuDevs
+]]--
+
 local StartGear = {
 		[1] = {123, 456, 789, 147, 258, 369}, -- Warrior
 		[2] = {123, 456, 789, 147, 258, 369}, -- Paladin
