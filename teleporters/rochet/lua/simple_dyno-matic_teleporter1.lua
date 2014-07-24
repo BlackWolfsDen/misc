@@ -1,4 +1,4 @@
-Enter file contents here--[==[
+--[==[
     = How to add new locations =
 
     Example:
@@ -61,7 +61,7 @@ local function OnGossipHello(event, player, unit)
 	    end
 	    	player:GossipSendMenu(1, unit)
     else
-		player:SendNotification("You are in combat")
+		player:SendNotification("You are in combat.")
 	end
 end
 
