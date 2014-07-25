@@ -20,7 +20,7 @@
     You can copy paste the above into the script and change the values as informed.
 ]==]
 
-local UnitEntry = 200006
+local UnitEntry = 390000
 
 local T = {
     [1] = { "Horde Mall And Locations", 1,
