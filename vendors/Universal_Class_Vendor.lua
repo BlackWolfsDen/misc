@@ -20,16 +20,16 @@ local T = {
 };
 
 local function OnGossipHello(event, player, creature)
-    player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_Sword_27.png:20|t Gear PVE - Warrior", 0, 1)
-    player:GossipMenuAddItem(0, "|TInterface/ICONS/Spell_Holy_DivineIntervention.png:20|t Gear PVE - Paladin", 0, 2)
-    player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_Weapon_Bow_07.png:20|t Gear PVE - Hunter", 0, 3)
-    player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_ThrowingKnife_04.png:20|t Gear PVE - Rogue", 0, 4)
-    player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_Staff_30.png:20|t Gear PVE - Priest", 0, 5)
-    player:GossipMenuAddItem(0, "|TInterface/ICONS/Spell_Deathknight_ClassIcon.png:20|t Gear PVE - Death Knight", 0, 6)
-    player:GossipMenuAddItem(0, "|TInterface/ICONS/Spell_Nature_BloodLust.png:20|t Gear PVE - Shaman", 0, 7)
-    player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_Staff_13.png:20|t Gear PVE - Mage", 0, 8)
-    player:GossipMenuAddItem(0, "|TInterface/ICONS/Spell_Nature_Drowsy.png:20|t Gear PVE - Warlock", 0, 9)
-    player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_Misc_MonsterClaw_04.png:20|t Gear PVE - Druid", 0, 11)
+	player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_Sword_27.png:20|t Gear PVE - Warrior", 0, 1)
+	player:GossipMenuAddItem(0, "|TInterface/ICONS/Spell_Holy_DivineIntervention.png:20|t Gear PVE - Paladin", 0, 2)
+	player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_Weapon_Bow_07.png:20|t Gear PVE - Hunter", 0, 3)
+	player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_ThrowingKnife_04.png:20|t Gear PVE - Rogue", 0, 4)
+	player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_Staff_30.png:20|t Gear PVE - Priest", 0, 5)
+	player:GossipMenuAddItem(0, "|TInterface/ICONS/Spell_Deathknight_ClassIcon.png:20|t Gear PVE - Death Knight", 0, 6)
+	player:GossipMenuAddItem(0, "|TInterface/ICONS/Spell_Nature_BloodLust.png:20|t Gear PVE - Shaman", 0, 7)
+	player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_Staff_13.png:20|t Gear PVE - Mage", 0, 8)
+	player:GossipMenuAddItem(0, "|TInterface/ICONS/Spell_Nature_Drowsy.png:20|t Gear PVE - Warlock", 0, 9)
+	player:GossipMenuAddItem(0, "|TInterface/ICONS/INV_Misc_MonsterClaw_04.png:20|t Gear PVE - Druid", 0, 11)
 	player:GossipSendMenu(1, creature)
 end
 
