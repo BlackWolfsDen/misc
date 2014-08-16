@@ -12,6 +12,6 @@ local function DespawnTimer(event, unit)
   unit:RegisterEvent(DespawnPocketGnome, timer, 1)
 end
 
-RegisterCreatureEvent(npcid, 23, DespawnTimer)
+RegisterCreatureEvent(npcid, 22, DespawnTimer)
 
 print("Pocket Gnome Despawner.")
