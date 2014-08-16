@@ -9,7 +9,7 @@ local function DespawnPocketGnome(event, delay, cycle, unit)
 end
 
 local function DespawnTimer(event, unit)
-  unit:RegisterEvent(DespawnPocketGnome, timer, 1)
+  local Ctimer = unit:RegisterEvent(DespawnPocketGnome, timer, 1)
 end
 
 RegisterCreatureEvent(npcid, 22, DespawnTimer)
