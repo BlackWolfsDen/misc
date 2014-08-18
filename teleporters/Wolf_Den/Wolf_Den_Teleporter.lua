@@ -4,8 +4,8 @@ local npcid = 170000
 local itemid = 40582
 local Teleport = {};
 
--- Menu Title, team, location name, team, minimum level, map, x, y, z, o
--- team :: 0 = ally, 1 = horde,  2 = horde/ally, 3 = gm /:T:\ 2 checks for a reason
+-- {Menu Title, team, {location name, team, minimum level, map, x, y, z, o}}
+-- team :: 0 = ally, 1 = horde,  2 = Both, 3 = gm   /:T:\   2 checks for a reason
 
 Teleporter = {
 	[1] = {"Eastern Kingdoms",2,
@@ -158,18 +158,6 @@ Teleporter = {
 		{"Dalaran", 2, 1, 571, 5807.060059, 506.243988, 657.575989, 5.544610},
 		{"Booty Bay", 2, 1, 0, -14281.988281, 552.414001, 8.904944, 4.063786},
 		{"GuruBashi Arena", 2, 1, 0, -13232.232422, 220.996262, 32.145123, 1.095633},
-		{"Dragon Canyon", 2, 1, 1, -8409.820313, 1499.060059, 27.716608, 2.412651},
-		{"The Gauntlet Horde", 1, 1, 1, 738.690002, -4625.069824, -4.332900, 5.544397}, -- Horde
-		{"The Gauntlet Ally", 0, 1, m, x, y, z, o},
-		{"Orgrimmar Gates", 2, 1, 1, 1300, -4389.887207, 26.267605, 0.182955},
-		{"IronForge Gates", 2, 1, 0, -5093.258301, -730.136536, 469.578156, 4.620017},
-		{"Noobz Farming Wolf Coin's", 1, 1, 1, -741.013977, 3920.419922, 22.467699, 5.026390}, -- Horde
-		{"Noobz Farming Wolf Coin's Ally", 0, 1, m, x, y, z, o},
-		{"Snowmen", 2, 1, 571, 5505.497070, 4748.402344, -193.848892, 2.587100},
-		{"Mummiez", 2, 1, 1, -2473.870117, -501.225006, -9.424650, 0.652500},
-		{"Pugz", 1, 1, 530, 8981.298828, -6672.629883, 16.565063, 1.346674}, -- Horde
-		{"Pugz", 0, 1, 530, 8981.114258, -6692.90039, 16.535664, 4.60607}, -- Ally
-		{"Zombiez", 2, 1, 530, -3702.305176, 2356.432373, 78.245857, 4.813656}, -- Horde
 			},
 	[11] = {"Event areas", 2,
 			},
