@@ -16,8 +16,8 @@ local Ltime = GetGameTime()
 		
 			if(Crespawntimer[player:GetGUIDLow()] == nil)then
 				Crespawntimer[player:GetGUIDLow()] = {
-													time = 0
-														};
+								time = 0
+									};
 			end
 	
 			if((Ltime - Crespawntimer[player:GetGUIDLow()].time) >= timer)then
