@@ -24,8 +24,13 @@ local Ltime = GetGameTime()
 				if(player:GetSelection() == nil)then
 					player:SendBroadcastMessage("You must select a creature")
 				else
-					player:GetSelection():Respawn()
-					Crespawntimer[player:GetGUIDLow()] = {time = GetGameTime()};
+
+					if(player:GetSelection():GetObjectType()=="Creature")then
+						player:GetSelection():Respawn()
+						Crespawntimer[player:GetGUIDLow()] = {time = GetGameTime()};
+					else
+						player:SendBroadcastMessage("For respawning creatures ONLY.")
+					end
 				end
 			else
 				player:SendBroadcastMessage("cooling down.")
