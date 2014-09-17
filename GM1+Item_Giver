@@ -1,6 +1,6 @@
 -- idea by 125125
 -- code by slp13at420
-local GM_Gear = {{2586,1},{11508,1},{12064,1},{17,1},{192,1},{23162,4}} -- Robe, Slippers, Hood, Martins Fury, Martins Staff)
+local GM_Gear = {{2586,1},{11508,1},{12064,1},{17,1},{192,1},{23162,4},}; -- {item id, count} -- Robe x1, Slippers x1, Hood x1, Martins Fury x1, Martins Staff x1, Foror's Crate of Endless Tears x4
 
 function GM_gearme(event, player, message, type, language)
 
