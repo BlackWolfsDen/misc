@@ -18,7 +18,7 @@ function GM_gearme(event, player, message, type, language)
 						player:AddItem(GM_Gear[a][1], 1)
 					end
 				else
-					player:SendBroadcastMessage("You have "..GM_Gear[a][2].." of "..GetItemLink(GM_Gear[a][1])..".")
+					player:SendBroadcastMessage("You have "..GM_Gear[a][2].." "..GetItemLink(GM_Gear[a][1])..".")
 				end
 			end
 		end
