@@ -1,13 +1,25 @@
 -- idea by 125125
 -- code by slp13at420
 local GM_Gear = {}
-local GM_Gear = {2586,11508,12064,17,192} -- Robe, Slippers, Hood, Martins Fury, Martins Staff)
+local GM_Gear = {{2586,1},{11508,1},{12064,1},{17,1},{192,1},{23162,4}} -- Robe, Slippers, Hood, Martins Fury, Martins Staff)
 
 function GM_gearme(event, player, message, type, language)
+
 	if(message == "#gmgearme")then
+
 		if(player:GetGMRank()>=1)then
-			for _, v in ipairs(GM_Gear) do
-				player:AddItem(v, 1)
+			
+			for a=1, #GM_Gear do
+			
+				for b=1, GM_Gear[a][2] do
+				
+					if(player:GetItemCount(GM_Gear[a][1]) < GM_Gear[a][2])then
+					
+						player:AddItem(GM_Gear[a][1], 1)
+					else
+						player:SendBroadcastMessage("You have a "..GetItemLink(GM_Gear[a][1])..".")
+					end
+				end
 			end
 		end
 	end
