@@ -1,6 +1,5 @@
 -- idea by 125125
 -- code by slp13at420
-local GM_Gear = {}
 local GM_Gear = {{2586,1},{11508,1},{12064,1},{17,1},{192,1},{23162,4}} -- Robe, Slippers, Hood, Martins Fury, Martins Staff)
 
 function GM_gearme(event, player, message, type, language)
