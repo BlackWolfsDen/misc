@@ -12,7 +12,7 @@ local Color = {
 	[2] = "|cffFF0000", -- Horde -- red
 	[3] = "|cff006600", -- Both -- green
 	[4] = "|cff000000", -- GM -- black
-				};
+		};
 -- Menu Title, icon, team, {location name, icon, team, minimum level, map, x, y, z, o}
 
 -- icon 0=bubble::1=bag::2=flight::3=book::4=wheel::5=wheel::6=bag dot::7=bubble dots::8=tabard::9=2swords::10=dot
