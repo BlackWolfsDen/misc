@@ -1,7 +1,7 @@
 -- by FoeReaper of EmuDevs.com
 -- Modified by slp13at420 of EmuDevs.com
 print("+-+-+-+-+-+-+-+-+-+")
-print("+ Teleport  thing +")
+print("+ Teleport thingy +")
 local itemid = nil -- to use with an item change from nil to item id.
 local npcid = nil -- to use with an npc change from nil to npc id.
 local Teleport = {};
