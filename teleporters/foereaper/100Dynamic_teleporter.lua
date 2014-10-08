@@ -4,10 +4,15 @@ print("+-+-+-+-+-+-+-+-+-+-+-+")
 print("+     Teleporter      +")
 print("+     Loading...      +")
 print("+-+-+-+-+-+-+-+-+-+-+-+")
-local itemid = nil -- to use with an item change from nil to item id.
-local npcid = nil -- to use with an npc change from nil to npc id.
+local itemid = 40582 -- nil -- to use with an item change from nil to item id.
+local npcid = 3100 -- nil -- to use with an npc change from nil to npc id.
 local Teleport = {};
-
+local Color = {
+	[1] = "|cff0000FF", -- Ally -- blue
+	[2] = "|cffFF0000", -- Horde -- red
+	[3] = "|cff006600", -- Both -- green
+	[4] = "|cffFFFF00", -- GM -- yellow
+				};
 -- Menu Title, icon, team, {location name, icon, team, minimum level, map, x, y, z, o}
 
 -- icon 0=bubble::1=bag::2=flight::3=book::4=wheel::5=wheel::6=bag dot::7=bubble dots::8=tabard::9=2swords::10=dot
@@ -15,7 +20,7 @@ local Teleport = {};
 -- team :: 0 = ally, 1 = horde,  2 = horde/ally, 3 = gm /:T:\ 2 checks for a reason
 
 Teleporter = {
-	[1] = {"|cff000000Eastern Kingdoms|r", 2, 2,
+	[1] = {"Eastern Kingdoms", 2, 2,
 		{"Alterac Mountains", 2, 2, 1, 0, 275.049011, -652.044006, 130.296005, 0.502032},
 		{"Arathi HighLands", 2, 2, 1, 0, -1581.449951, -2704.060059, 35.416801, 0.490373},
 		{"BadLands", 2, 2, 1, 0, -6782.560059, -3128.139893, 240.479996, 5.659120},
@@ -42,7 +47,7 @@ Teleporter = {
 		{"Westfall", 2, 0, 1, 0, -10684.900391, 1033.630005, 32.538898, 6.073840},
 		{"Wetlands", 2, 0, 1, 0, -3517.750000, -913.401001, 8.866250, 2.607050},
 			},
-	[2] = {"|cff000000Kalimdor|r", 2, 2,
+	[2] = {"Kalimdor", 2, 2,
 		{"Ashenvale Forest", 2, 2, 1, 1, 1919.770020, -2169.679932, 94.672897, 6.141770},
 		{"Azshara", 2, 0, 1, 1, 3117.120117, -4387.970215, 91.905899, 5.498970},
 		{"Azuremyste Isle", 2, 0, 1, 530, -4192.620117, -12576.700195, 36.759800, 1.628130},
@@ -63,7 +68,7 @@ Teleporter = {
 		{"Un'Goro Crater", 2, 2, 1, 1, -6291.549805, -1158.619995, -258.138000, 0.457099},
 		{"Winterspring", 2, 2, 1, 1, 6658.493652, -4558.605469, 717.373352, 2.985695},
 			},
-	[3] = {"|cff000000Outland|r", 2, 2,
+	[3] = {"Outland", 2, 2,
 		{"Blade's Edge Mountains", 2, 2, 1, 530, 2029.750000, 6232.069824, 133.494980, 1.303950},
 		{"HellFire Peninsula", 2, 2, 1, 530, -207.335007, 2035.920044, 96.463997, 1.596760},
 		{"Nagrand", 2, 2, 1, 530, -1610.849976, 7733.620117, -17.277300, 1.335220},
@@ -73,7 +78,7 @@ Teleporter = {
 		{"Terokkar Forest", 2, 2, 1, 530, -2266.229980, 4244.729980, 1.477280, 3.684260},
 		{"Zangarmarsh", 2, 2, 1, 530, -220.296997, 5378.580078, 23.322300, 1.617180},
 			},
-	[4] = {"|cff000000Northrend|r", 2, 2,
+	[4] = {"Northrend", 2, 2,
 		{"Borean Tundra", 2, 2, 1, 571, 2954.239990, 5379.129883, 60.453800, 2.555440},
 		{"Crystalsong Forest", 2, 2, 2, 1, 571, 5411.169922, -699.369995, 167.082001, 1.571670},
 		{"Dragonblight", 2, 2, 1, 571, 2678.169922, 891.825989, 4.374940, 0.101121},
@@ -85,7 +90,7 @@ Teleporter = {
 		{"Wintergrasp", 2, 2, 1, 571, 4522.229980, 2828.010010, 389.975006, 0.215009},
 		{"Zul'Drak", 2, 2, 1, 571, 5560.229980, -3211.659912, 371.709015, 5.550550},
 			},
-	[5] = {"|cff000000Classic Dungeons|r", 9, 2,
+	[5] = {"Classic Dungeons", 9, 2,
 		{"Blackfathom Deeps", 2, 2, 1, 1, 4249.990234, 740.101990, -25.671000, 1.340620},
 		{"Blackrock Depths", 2, 2, 1, 0, -7179.339844, -921.211975, 165.820999, 5.095990},
 		{"Blackrock Spire", 2, 2, 1, 0, -7527.049805, -1226.770020, 285.731995, 5.296260},
@@ -106,7 +111,7 @@ Teleporter = {
 		{"Wailing Caverns", 2, 1, 1, 1, -731.606995, -2218.389893, 17.028099, 2.784860},
 		{"Zul'Farrak", 2, 2, 1, 1, -6801.189941, -2893.020020, 9.003880, 0.158639},
 			},
-	[6] = {"|cff000000Burning Crusades Dungeons|r", 9, 2,
+	[6] = {"Burning Crusades Dungeons", 9, 2,
 		{"Auchindoun", 2, 2, 1, 530, -3324.489990, 4943.450195, -101.238998, 4.639010},
 		{"Caverns of Time", 2, 2, 1, 1, -8369.650391, -4253.109863, -204.272003, 3.577925},
 		{"Coilfang Reservoir", 2, 2, 1, 530, 738.864990, 6865.770020, -69.456904, 6.276550},
@@ -114,7 +119,7 @@ Teleporter = {
 		{"Magisters' Terrace", 2, 2, 1, 530, 12884.599609, -7317.689941, 65.502296, 4.799000},
 		{"Tempest Keep", 2, 2, 1, 530, 3100.479980, 1536.489990, 190.300003, 4.622260},
 			},
-	[7] = {"|cff000000Wotlk Dungeons|r", 9, 2,
+	[7] = {"Wotlk Dungeons", 9, 2,
 		{"Azjol-Nerub", 2, 2, 1, 571, 3707.860107, 2150.229980, 36.756954, 3.220000},
 		{"The Culling of Stratholme", 2, 2, 1, 1, -8756.389648, -4440.680176, -199.489014, 4.662890},
 		{"Trial of the Champion", 2, 2, 1, 571, 8590.950195, 791.791992, 558.234985, 3.119493},
@@ -128,7 +133,7 @@ Teleporter = {
 		{"Utgarde Pinnacle", 2, 2, 1, 571, 1203.410034, -4868.589844, 41.248600, 0.283237},
 		{"The Violet Hold", 2, 2, 1, 571, 5693.080078, 502.588013, 652.671997, 4.076307},
 			},
-	[8] = {"|cff000000Raid Locations|r", 9, 2,
+	[8] = {"Raid Locations", 9, 2,
 		{"Black Temple", 2, 2, 1, 530, -3649.919922, 317.468994, 35.282700, 2.942850},
 		{"BlackWing Lair", 2, 2, 1, 229, 152.451004, -474.881012, 116.839996, 0.001073},
 		{"The Eye", 2, 2, 1, 530, 3088.489990, 1381.569946, 184.863007, 4.619730},
@@ -152,12 +157,12 @@ Teleporter = {
 		{"Zul'Aman", 2, 0, 1, 530, 6851.779785, -7972.569824, 179.242004, 4.646910},
 		{"Zul'Gurub", 2, 2, 1, 0, -11916.231445, -1215.714233, 92.288994, 4.724540},
 			},
-	[9] = {"|cff000000Malls|r", 10, 2,
-		{"|cff0000FFIronForge|r", 1, 0, 1, 0, -4902.000488, -960.816162, 501.458954, 2.207237}, -- Ally
-		{"|cffFF0000Orgrimmar|r", 1, 1, 1, 1, 1600.981689, -4378.820313, 9.998322, 5.248190}, -- Horde
+	[9] = {"Malls", 10, 2,
+		{"IronForge", 1, 0, 1, 0, -4902.000488, -960.816162, 501.458954, 2.207237}, -- Ally
+		{"Orgrimmar", 1, 1, 1, 1, 1600.981689, -4378.820313, 9.998322, 5.248190}, -- Horde
 		{"Shattrath", 1, 2, 1, 530, -1887.619995, 5359.089844, -12.427900, 1.258830},
 			},
-	[10] = {"|cff000000Custom Location|r", 10, 2,
+	[10] = {"Custom Location", 10, 2,
 		{"Booty Bay", 2, 2, 1, 0, -14281.988281, 552.414001, 8.904944, 4.063786},
 		{"Dalaran", 2, 2, 1, 571, 5807.060059, 506.243988, 657.575989, 5.544610},
 		{"Darnassus", 2, 0, 1, 1, 9870.209961, 2493.469971, 1315.876221, 5.974544},
@@ -168,9 +173,9 @@ Teleporter = {
 		{"Thunder Bluff", 2, 1, 1, 1, -1274.449951, 71.860100, 128.158981, 0.707645},
 		{"Undercity", 2, 1, 1, 0, 1637.209961, 240.132004, -43.103401, 3.131470},
 			},
-	[11] = {"|cff000000Event areas|r", 10, 2,
+	[11] = {"Event areas", 10, 2,
 			},
-	[12] = {"|cff000000GM Locations|r", 10, 3,
+	[12] = {"GM Locations", 10, 3,
 			},
 		}
 
@@ -181,7 +186,7 @@ local function TeleportStoneOnHello(event, player, unit, sender, intid, code)
 	    for i, v in ipairs(Teleporter) do
 
 	        if(v[3] == 2)or(v[3] == player:GetTeam())or(player:IsGM() == true)then
-	            player:GossipMenuAddItem(v[2], v[1], i, 0)
+	            player:GossipMenuAddItem(v[2], ""..Color[v[3]+1]..""..v[1], i, 0)
 	        end
 	    end
 	    	player:GossipSendMenu(1, unit)
@@ -202,9 +207,9 @@ local function TeleporterOnGossipSelect(event, player, unit, sender, intid, code
         for i, v in ipairs(Teleporter[sender]) do
 
             if (i > 3) then
-            
+print(Teleporter[sender][i][3])
             	if((Teleporter[sender][i][3] == 2 or Teleporter[sender][i][3] == player:GetTeam())or(player:IsGM() == true))then
-                	player:GossipMenuAddItem(v[2], "|cff000000".. v[1].."|r", sender, i)
+                	player:GossipMenuAddItem(v[2], ""..(Color[((Teleporter[sender][i][3])+1)]).."".. v[1].."|r", sender, i)
                 end
             end
 		end
