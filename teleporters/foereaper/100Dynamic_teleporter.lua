@@ -4,8 +4,8 @@ print("+-+-+-+-+-+-+-+-+-+-+-+")
 print("+     Teleporter      +")
 print("+     Loading...      +")
 print("+-+-+-+-+-+-+-+-+-+-+-+")
-local itemid = 40582 -- nil -- to use with an item change from nil to item id.
-local npcid = 3100 -- nil -- to use with an npc change from nil to npc id.
+local itemid = nil -- to use with an item change from nil to item id.
+local npcid = nil -- to use with an npc change from nil to npc id.
 local Teleport = {};
 local Color = {
 	[1] = "|cff0000FF", -- Ally -- blue
