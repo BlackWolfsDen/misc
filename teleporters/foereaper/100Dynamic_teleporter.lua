@@ -217,7 +217,7 @@ local function TeleporterOnGossipSelect(event, player, unit, sender, intid, code
 	player:GossipComplete()
 end
 
-if(itemid ~=nil)then
+if(GetItemLink(itemid))then
 	RegisterItemGossipEvent(itemid, 1, TeleportStoneOnHello)
 	RegisterItemGossipEvent(itemid, 2, TeleporterOnGossipSelect)
 	print("+Item active.     +")
