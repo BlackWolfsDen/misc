@@ -2,8 +2,8 @@
 -- Modified by slp13at420 of EmuDevs.com
 print("+-+-+-+-+-+-+-+-+-+")
 print("+ Teleport  thing +")
-local npcid = nil -- to use with an npc change from nil to npc id.
 local itemid = nil -- to use with an item change from nil to item id.
+local npcid = nil -- to use with an npc change from nil to npc id.
 local Teleport = {};
 
 -- Menu Title, icon, team, {location name, icon, team, minimum level, map, x, y, z, o}
