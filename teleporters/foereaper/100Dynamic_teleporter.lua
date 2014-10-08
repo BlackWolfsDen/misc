@@ -217,14 +217,14 @@ local function TeleporterOnGossipSelect(event, player, unit, sender, intid, code
 end
 
 if(itemid ~=nil)then
-	RegisterItemGossipEvent(itemid, 1, teleportstoneonhello)
+	RegisterItemGossipEvent(itemid, 1, TeleportStoneOnHello)
 	RegisterItemGossipEvent(itemid, 2, TeleporterOnGossipSelect)
 	print("+Item active.     +")
 else
 	print("+Item nil.         +")
 end
 if(npcid ~= nil)then
-	RegisterCreatureGossipEvent(npcid, 1, teleportstoneonhello)
+	RegisterCreatureGossipEvent(npcid, 1, TeleportStoneOnHello)
 	RegisterCreatureGossipEvent(npcid, 2, TeleporterOnGossipSelect)
 	print("+Creature active. +")
 else
