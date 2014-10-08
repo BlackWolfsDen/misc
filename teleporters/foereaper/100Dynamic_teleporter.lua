@@ -11,7 +11,7 @@ local Color = {
 	[1] = "|cff0000FF", -- Ally -- blue
 	[2] = "|cffFF0000", -- Horde -- red
 	[3] = "|cff006600", -- Both -- green
-	[4] = "|cffFFFF00", -- GM -- yellow
+	[4] = "|cff000000", -- GM -- black
 				};
 -- Menu Title, icon, team, {location name, icon, team, minimum level, map, x, y, z, o}
 
