@@ -207,7 +207,7 @@ local function TeleporterOnGossipSelect(event, player, unit, sender, intid, code
         for i, v in ipairs(Teleporter[sender]) do
 
             if (i > 3) then
-print(Teleporter[sender][i][3])
+
             	if((Teleporter[sender][i][3] == 2 or Teleporter[sender][i][3] == player:GetTeam())or(player:IsGM() == true))then
                 	player:GossipMenuAddItem(v[2], ""..(Color[((Teleporter[sender][i][3])+1)]).."".. v[1].."|r", sender, i)
                 end
