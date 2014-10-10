@@ -1,6 +1,7 @@
 print("+-+-+-+-+-+-+-+-+-+-+-+")
 print("+CheaterStone Loading +")
 local itemid = nil -- 400582 -- default
+local npcid = nil
 
 local offset = 10000 -- must be higher than the highest entry in world.game_tele table.
 local CHEATER = {};
@@ -136,6 +137,14 @@ if(itemid ~= nil)then
 	print("+    Item active.     +")
 else
 	print("+      Item nil.      +")
+end
+
+if(npcid ~= nil)then
+	RegisterCreatureGossipEvent(npcid, 1, TeleportStoneOnHello)
+	RegisterCreatureGossipEvent(npcid, 2, TeleporterOnGossipSelect)
+	print("+Creature active. +")
+else
+	print("+Creature nil.    +")
 end
 print("+-+-+-+-+-+-+-+-+-+-+-+")
 print("+CheaterStone Loaded  +")
