@@ -40,7 +40,7 @@ CHEATSTONE[player:GetGUIDLow()] = {	page = 0,};
 
 	else
 		for page=1, pages do
-			player:GossipMenuAddItem(2, page, (offset+page), 0)
+			player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
 		end
 			
 
