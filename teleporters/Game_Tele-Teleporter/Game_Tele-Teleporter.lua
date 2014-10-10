@@ -13,10 +13,10 @@ local Q = WorldDBQuery("SELECT * FROM world.game_tele;");
 		repeat
 			CHEATER[Q:GetUInt32(0)] = {
 							entry = Q:GetUInt32(0),
-							x = Q:GetUInt32(1),
-							y = Q:GetUInt32(2),
-							z = Q:GetUInt32(3),
-							o = Q:GetUInt32(4),
+							x = Q:GetString(1),
+							y = Q:GetString(2),
+							z = Q:GetString(3),
+							o = Q:GetString(4),
 							map = Q:GetUInt32(5),
 							name = Q:GetString(6),
 										};
