@@ -55,7 +55,7 @@ local function back(player, unit)
 		CHEATSTONE[player:GetGUIDLow()].page = (CHEATSTONE[player:GetGUIDLow()].page - 15)
 
 		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+15 do
-			player:GossipMenuAddItem(2, page, (offset+page), 0)
+			player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
 		end
 
 		player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
@@ -73,7 +73,7 @@ local function next(player, unit)
 		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+15 do
 			
 			if(page <=pages)then
-				player:GossipMenuAddItem(2, page, (offset+page), 0)
+				player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
 			else
 			end
 		end
@@ -88,7 +88,7 @@ end
 local function returnz(player, unit)
 
 		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+15 do
-			player:GossipMenuAddItem(2, page, (offset+page), 0)
+			player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
 		end
 
 	player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
