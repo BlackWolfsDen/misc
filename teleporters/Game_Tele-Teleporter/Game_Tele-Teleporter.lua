@@ -1,6 +1,6 @@
 print("+-+-+-+-+-+-+-+-+-+-+-+")
 print("+CheaterStone Loading +")
-local itemid = nil -- 400582 -- default
+local itemid = nil -- 40582 -- default
 local npcid = nil
 
 local offset = 10000 -- must be higher than the highest entry in world.game_tele table.
@@ -126,7 +126,8 @@ local function CheaterStoneOnSelect(event, player, unit, sender, intid, code)
 		player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
 		player:GossipSendMenu(1, unit)
 	else
-        player:Teleport(CHEATER[sender].map, CHEATER[sender].x, CHEATER[sender].y, CHEATER[sender].z, CHEATER[sender].o)
+	        player:Teleport(CHEATER[sender].map, CHEATER[sender].x, CHEATER[sender].y, CHEATER[sender].z, CHEATER[sender].o)
+		player:GossipComplete()
 	end			
 end
 
