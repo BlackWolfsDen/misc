@@ -1,6 +1,6 @@
 print("+-+-+-+-+-+-+-+-+-+-+-+")
 print("+CheaterStone Loading +")
-local itemid = nil
+local itemid = nil -- 400582 -- default
 
 local offset = 10000 -- must be higher than the highest entry in world.game_tele table.
 local CHEATER = {};
