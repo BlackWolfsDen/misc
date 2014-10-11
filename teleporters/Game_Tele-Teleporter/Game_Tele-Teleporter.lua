@@ -47,6 +47,7 @@ player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
 player:GossipSendMenu(1, unit)
 end
 
+local function back(player, unit)
 
 CHEATSTONE[player:GetGUIDLow()].page = (CHEATSTONE[player:GetGUIDLow()].page - page_per_window)
 
