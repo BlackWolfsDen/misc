@@ -142,7 +142,7 @@ local function CheaterStoneOnSelect(event, player, unit, sender, intid, code)
 		for loc=(((sender-offset)*loc_per_page)-(loc_per_page-1)), ((sender-offset)*loc_per_page) do
 	
 			if(loc <= #CHEATER)then
-				player:GossipMenuAddItem(2, CHEATER[loc].name, loc, loc)
+				player:GossipMenuAddItem(2, CHEATER[loc][6], loc, loc)
 			else
 				player:GossipMenuAddItem(1, "<- back", (offset+offset+3), 0)
 				player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
@@ -155,7 +155,8 @@ local function CheaterStoneOnSelect(event, player, unit, sender, intid, code)
 		player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
 		player:GossipSendMenu(1, unit)
 	else
-	        player:Teleport(CHEATER[sender].map, CHEATER[sender].x, CHEATER[sender].y, CHEATER[sender].z, CHEATER[sender].o)
+	        local x, y, z, o, map,name = table.unpack(CHEATER[intid])
+	        player:Teleport(map, x, y, z, o)
 		player:GossipComplete()
 		CHEATSTONE[player:GetGUIDLow()] = {	page = nil,};
 	end			
