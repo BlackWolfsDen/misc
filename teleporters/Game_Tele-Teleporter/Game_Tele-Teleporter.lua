@@ -55,28 +55,25 @@ player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
 player:GossipSendMenu(1, unit)
 end
 
-local function back(player, unit)
 
-	if(CHEATSTONE[player:GetGUIDLow()].page > 1)then
-		CHEATSTONE[player:GetGUIDLow()].page = (CHEATSTONE[player:GetGUIDLow()].page - page_per_window)
+CHEATSTONE[player:GetGUIDLow()].page = (CHEATSTONE[player:GetGUIDLow()].page - page_per_window)
 
-		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+page_per_window do
+	for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+page_per_window do
 
-			if(page <= pages)then
-				player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
-			else
-				player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
-				player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
-				player:GossipSendMenu(1, unit)
-				return false;
-			end
+		if(page <= pages)then
+			player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
+
+		else
 		end
-
-		player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
-		player:GossipMenuAddItem(1, "next ->", (offset+offset+1), 0)
-		player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
-		player:GossipSendMenu(1, unit)
 	end
+
+	if(CHEATSTONE[player:GetGUIDLow()].page > page_per_window)then
+		player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
+	end
+	
+	player:GossipMenuAddItem(1, "next ->", (offset+offset+1), 0)
+	player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
+	player:GossipSendMenu(1, unit)
 end
 
 local function next(player, unit)
