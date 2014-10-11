@@ -23,7 +23,7 @@ local Q = WorldDBQuery("SELECT * FROM world.game_tele;");
 			until not Q:NextRow()
 	end
 
-local pages = (#CHEATER / 15)
+local pages = math.ceil(#CHEATER / 15)
 
 local function CheaterStoneOnHello(event, player, unit, sender, intid, code)
 CHEATSTONE[player:GetGUIDLow()] = {	page = 1,};
