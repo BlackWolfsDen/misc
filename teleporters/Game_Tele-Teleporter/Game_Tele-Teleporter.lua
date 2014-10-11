@@ -59,6 +59,10 @@ local function back(player, unit)
 			if(page <= pages)then
 				player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
 			else
+				player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
+				player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
+				player:GossipSendMenu(1, unit)
+				return false;
 			end
 		end
 
@@ -96,7 +100,16 @@ end
 local function returnz(player, unit)
 
 		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+15 do
-			player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
+
+			if(page <= pages)then
+				player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
+
+			else
+				player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
+				player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
+				player:GossipSendMenu(1, unit)
+				return false;
+			end
 		end
 
 	player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
@@ -153,6 +166,7 @@ local function CheaterStoneOnSelect(event, player, unit, sender, intid, code)
 end
 
 print("+-+-+-+-+-+-+-+-+-+-+-+")
+
 if(itemid ~= nil)then
 	RegisterItemGossipEvent(itemid, 1, CheaterStoneOnHello)
 	RegisterItemGossipEvent(itemid, 2, CheaterStoneOnSelect)
@@ -168,6 +182,7 @@ if(npcid ~= nil)then
 else
 	print("+Creature nil.    +")
 end
+
 print("+-+-+-+-+-+-+-+-+-+-+-+")
 print("+CheaterStone Loaded  +")
 print("+-+-+-+-+-+-+-+-+-+-+-+")
