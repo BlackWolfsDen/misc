@@ -1,8 +1,10 @@
 print("+-+-+-+-+-+-+-+-+-+-+-+")
 print("+CheaterStone Loading +")
-local itemid = nil -- 400582 -- default
-local npcid = nil
+local itemid = nil -- 400582 -- nil
+local npcid = nil -- change to your npc id 
 
+local page_per_window = 25
+local loc_per_page = 25
 local offset = 10000 -- must be higher than the highest entry in world.game_tele table.
 local CHEATER = {};
 local CHEATSTONE = {};
@@ -23,14 +25,15 @@ local Q = WorldDBQuery("SELECT * FROM world.game_tele;");
 			until not Q:NextRow()
 	end
 
-local pages = math.ceil(#CHEATER / 15)
+local pages = math.ceil(#CHEATER / loc_per_page)
 
 local function CheaterStoneOnHello(event, player, unit, sender, intid, code)
+
 CHEATSTONE[player:GetGUIDLow()] = {	page = 1,};
 
-	if(pages > 15)then
+	if(pages > page_per_window)then
 			
-		for page=1, 15 do
+		for page=1, page_per_window do
 			
 			player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
 				
@@ -52,9 +55,9 @@ end
 local function back(player, unit)
 
 	if(CHEATSTONE[player:GetGUIDLow()].page > 1)then
-		CHEATSTONE[player:GetGUIDLow()].page = (CHEATSTONE[player:GetGUIDLow()].page - 15)
+		CHEATSTONE[player:GetGUIDLow()].page = (CHEATSTONE[player:GetGUIDLow()].page - page_per_window)
 
-		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+15 do
+		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+page_per_window do
 
 			if(page <= pages)then
 				player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
@@ -75,10 +78,10 @@ end
 
 local function next(player, unit)
 
-	if(CHEATSTONE[player:GetGUIDLow()].page < (#CHEATER/15))then
-		CHEATSTONE[player:GetGUIDLow()].page = (CHEATSTONE[player:GetGUIDLow()].page + 15)
+	if(CHEATSTONE[player:GetGUIDLow()].page < pages)then
+		CHEATSTONE[player:GetGUIDLow()].page = (CHEATSTONE[player:GetGUIDLow()].page + page_per_window)
 
-		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+15 do
+		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page + page_per_window do
 			
 			if(page <= pages)then
 				player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
@@ -143,7 +146,7 @@ local function CheaterStoneOnSelect(event, player, unit, sender, intid, code)
 	
 	if(intid == 0)then
 		
-		for loc=(((sender-offset)*15)-14), ((sender-offset)*15) do
+		for loc=(((sender-offset)*loc_per_page)-(loc_per_page-1)), ((sender-offset)*loc_per_page) do
 	
 			if(loc <= #CHEATER)then
 				player:GossipMenuAddItem(2, CHEATER[loc].name, loc, loc)
