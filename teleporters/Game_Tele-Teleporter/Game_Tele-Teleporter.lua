@@ -95,20 +95,19 @@ end
 
 local function returnz(player, unit)
 
-		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+15 do
+	for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+page_per_window do
 
-			if(page <= pages)then
-				player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
+		if(page <= pages)then
+			player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
 
-			else
-				player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
-				player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
-				player:GossipSendMenu(1, unit)
-				return false;
-			end
+		else
 		end
+	end
 
-	player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
+	if(CHEATSTONE[player:GetGUIDLow()].page > page_per_window)then
+		player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
+	end
+	
 	player:GossipMenuAddItem(1, "next ->", (offset+offset+1), 0)
 	player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
 	player:GossipSendMenu(1, unit)
