@@ -7,6 +7,8 @@ local page_per_window = 25 -- how many pages to list per gossip window -- max 30
 local loc_per_page = 25 -- how many tele points to list per page -- max 30 rows of `blah blah` --
 local offset = 10000 -- must be higher than the highest entry in world.game_tele table --
 
+-- DONT EDIT ANYTHING BELOW THIS LINE UNLESS YOU REALLY KNOW WHAT YOU ARE DOING --
+
 local CHEATER = {};
 local CHEATSTONE = {};
 
