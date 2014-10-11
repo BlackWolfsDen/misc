@@ -26,7 +26,7 @@ local Q = WorldDBQuery("SELECT * FROM world.game_tele;");
 local pages = (#CHEATER / 15)
 
 local function CheaterStoneOnHello(event, player, unit, sender, intid, code)
-CHEATSTONE[player:GetGUIDLow()] = {	page = 0,};
+CHEATSTONE[player:GetGUIDLow()] = {	page = 1,};
 
 	if(pages > 15)then
 			
@@ -55,7 +55,11 @@ local function back(player, unit)
 		CHEATSTONE[player:GetGUIDLow()].page = (CHEATSTONE[player:GetGUIDLow()].page - 15)
 
 		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+15 do
-			player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
+
+			if(page <= pages)then
+				player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
+			else
+			end
 		end
 
 		player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
@@ -72,9 +76,13 @@ local function next(player, unit)
 
 		for page=CHEATSTONE[player:GetGUIDLow()].page, CHEATSTONE[player:GetGUIDLow()].page+15 do
 			
-			if(page <=pages)then
+			if(page <= pages)then
 				player:GossipMenuAddItem(2, "Page "..page, (offset+page), 0)
 			else
+				player:GossipMenuAddItem(1, "<- back", (offset+offset+0), 0)
+				player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
+				player:GossipSendMenu(1, unit)
+				return false;
 			end
 		end
 
@@ -111,23 +119,36 @@ local function CheaterStoneOnSelect(event, player, unit, sender, intid, code)
 	
 	if(sender == (offset+offset+2))then
 		player:GossipComplete()
+		CHEATSTONE[player:GetGUIDLow()] = {	page = nil,};
 		return false;
 	end
 	
 	if(sender == (offset+offset+3))then -- return
 		returnz(player, unit)
+		return false;
 	end
 	
 	if(intid == 0)then
+		
 		for loc=(((sender-offset)*15)-14), ((sender-offset)*15) do
-			player:GossipMenuAddItem(2, CHEATER[loc].name, loc, loc)
+	
+			if(loc <= #CHEATER)then
+				player:GossipMenuAddItem(2, CHEATER[loc].name, loc, loc)
+			else
+				player:GossipMenuAddItem(1, "<- back", (offset+offset+3), 0)
+				player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
+				player:GossipSendMenu(1, unit)
+				return false;
+			end
 		end
+		
 		player:GossipMenuAddItem(1, "<- back", (offset+offset+3), 0)
 		player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
 		player:GossipSendMenu(1, unit)
 	else
 	        player:Teleport(CHEATER[sender].map, CHEATER[sender].x, CHEATER[sender].y, CHEATER[sender].z, CHEATER[sender].o)
 		player:GossipComplete()
+		CHEATSTONE[player:GetGUIDLow()] = {	page = nil,};
 	end			
 end
 
