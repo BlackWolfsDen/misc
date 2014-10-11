@@ -3,9 +3,10 @@ print("+CheaterStone Loading +")
 local itemid = nil -- 400582 -- nil
 local npcid = nil -- change to your npc id 
 
-local page_per_window = 25
-local loc_per_page = 25
-local offset = 10000 -- must be higher than the highest entry in world.game_tele table.
+local page_per_window = 25 -- how many pages to list per gossip window --
+local loc_per_page = 25 -- how many tele points to list per page --
+local offset = 10000 -- must be higher than the highest entry in world.game_tele table --
+
 local CHEATER = {};
 local CHEATSTONE = {};
 
@@ -29,7 +30,7 @@ local pages = math.ceil(#CHEATER / loc_per_page)
 
 local function CheaterStoneOnHello(event, player, unit, sender, intid, code)
 
-CHEATSTONE[player:GetGUIDLow()] = {	page = 1,};
+CHEATSTONE[player:GetGUIDLow()] = {page = 1,};
 
 	if(pages > page_per_window)then
 			
