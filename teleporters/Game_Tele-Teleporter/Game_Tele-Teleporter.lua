@@ -16,16 +16,8 @@ local Q = WorldDBQuery("SELECT * FROM world.game_tele;");
 
 	if(Q)then
 		repeat
-			CHEATER[Q:GetUInt32(0)] = {
-							entry = Q:GetUInt32(0),
-							x = Q:GetString(1),
-							y = Q:GetString(2),
-							z = Q:GetString(3),
-							o = Q:GetString(4),
-							map = Q:GetUInt32(5),
-							name = Q:GetString(6),
-										};
-			until not Q:NextRow()
+			CHEATER[Q:GetUInt32(0)] = {Q:GetString(1),Q:GetString(2),Q:GetString(3),Q:GetString(4),Q:GetUInt32(5),Q:GetString(6)};-- [entry] {x, y, z, o, map, name}
+		until not Q:NextRow()
 	end
 
 local pages = math.ceil(#CHEATER / loc_per_page)
