@@ -178,11 +178,11 @@ end
 if(npcid ~= nil)then
 	RegisterCreatureGossipEvent(npcid, 1, TeleportStoneOnHello)
 	RegisterCreatureGossipEvent(npcid, 2, TeleporterOnGossipSelect)
-	print("+Creature active. +")
+	print("+   Creature active.  +")
 else
-	print("+Creature nil.    +")
+	print("+   Creature nil.     +")
 end
 
 print("+-+-+-+-+-+-+-+-+-+-+-+")
-print("+CheaterStone Loaded  +")
+print("+ CheaterStone Loaded +")
 print("+-+-+-+-+-+-+-+-+-+-+-+")
