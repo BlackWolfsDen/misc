@@ -6,7 +6,13 @@
 -- name `premium` : Datatype = TINYINT : Length/Set = 1 : Unsigned = checked : Default = 0
 -- then just add the npc vendor to your world.creature_template table.
 -- for TrintyCore2 3.3.5 Eluna
+
+print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
+
 local npcid = 101
+
+local despawn_timer = 60000 -- in ms for performingamespawn() // 1000 = 1 second // default 60000 = 60 seconds
+local respawn_timer = 60 -- in seconds for comaprison to GetGameTime()
 
 BUFFS = {};
 PREM = {};
@@ -24,9 +30,10 @@ local function PremiumOnLogin(event, player)  -- Send a welcome massage to playe
 local Q = WorldDBQuery("SELECT username, premium FROM auth.account WHERE `id` = '"..player:GetAccountId().."';"); -- this would need to be changed for your Premium value location.
 
 PREM[player:GetAccountId()] = {
-	Name = Q:GetString(0),
-	Premium = Q:GetUInt32(1)
-};
+			Name = Q:GetString(0),
+			Premium = Q:GetUInt32(1)
+			spawned = 0,
+				};
 			
 	if(PREM[player:GetAccountId()].Premium==1)then
 		player:SendBroadcastMessage("|CFFE55BB0[Premium]|r|CFFFE8A0E Welcome "..player:GetName().." you are Premium.|r")
@@ -45,12 +52,26 @@ local function UnSummonPremiumVendor(eventid, timer, player, creature)
 end
 
 local function SummonPremiumVendor(player)
+
+local ctime = GetGameTime()
+
 	if(PREM[player:GetAccountId()].Premium==1)then
-		PerformIngameSpawn(1, PREM["SERVER"].vendor_id, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 0, 90000, 1)
+
+		if(ctime >= PREM[player:GetAccountId()].spawned+respawn_timer)then -- checks current time with stored time of spawn plus the timer
+		
+			PREM[player:GetAccountId()].spawned = ctime -- stores the time of spawn
+			PerformIngameSpawn(1, PREM["SERVER"].vendor_id, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 0, despawn_timer, 1)
+
+		else
+			player:SendBroadcastMessage("you must wait to summon another vendor.")
+		end
+	else
+		player:SendBroadcastMessage("You are NOT Premium")
 	end
 end
 
 local function PremiumOnChat(event, player, msg, _, lang)
+
 	if (msg == "#premium") then  -- Use #premium for sending the gossip menu
 		if(PREM[player:GetAccountId()].Premium==1)then
             OnPremiumHello(event, player)
@@ -144,3 +165,6 @@ end
 
 RegisterCreatureGossipEvent(PREM["SERVER"].vendor_id, 1, PremiumVendorHello)
 RegisterCreatureGossipEvent(PREM["SERVER"].vendor_id, 2, PremiumVendorSelect)
+
+print("Salja's Premium System Engine Running.")
+print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
