@@ -54,8 +54,10 @@ local function PremiumOnLogout(event, player)
 end
 
 local function UnSummonPremiumVendor(eventid, timer, player, creature)
+	
 	creature:DespawnOrUnsummon(0)
-	WorldDBQuery("DELETE FROM world.creature WHERE `guid` = '"..creature:GetGUIDLow().."';") 
+	WorldDBQuery("DELETE FROM world.creature WHERE `guid` = '"..creature:GetGUIDLow().."';")
+	
 end
 
 local function SummonPremiumVendor(player)
@@ -80,13 +82,14 @@ end
 local function PremiumOnChat(event, player, msg, _, lang)
 
 	if (msg == "#premium") then  -- Use #premium for sending the gossip menu
+		
 		if(PREM[player:GetAccountId()].Premium==1)then
-            OnPremiumHello(event, player)
-        else
-            player:SendBroadcastMessage("|CFFE55BB0[Premium]|r|CFFFE8A0E Sorry "..player:GetName().." you dont have the Premium rank. |r")
-            player:SendBroadcastMessage("|CFFE55BB0[Premium]|r|CFFFE8A0E Please consider donating for the rank. |r")
-        end
-    end
+            		OnPremiumHello(event, player)
+	        else
+	            player:SendBroadcastMessage("|CFFE55BB0[Premium]|r|CFFFE8A0E Sorry "..player:GetName().." you dont have the Premium rank. |r")
+	            player:SendBroadcastMessage("|CFFE55BB0[Premium]|r|CFFFE8A0E Please consider donating for the rank. |r")
+	        end
+    	end
 end
 
 function OnPremiumHello(event, player)
@@ -104,28 +107,35 @@ end
 function OnPremiumSelect(event, player, unit, sender, intid, code)
 	
 	if(intid==1) then -- Close the Gossip
-        end
+	end
+
  	if(intid==2) then -- Send Bank Window
         	player:SendShowBank(player)
         end
+
 	if(intid==3) then -- Send Auctions Window
         	player:SendAuctionMenu(player)
         end
+
 	if(intid==4)then -- summon the Premium Vendor
 		SummonPremiumVendor(player)
 	end
+
 	if(intid==5)then -- buff  me
 		for _, v in ipairs(BUFFS)do
 			player:AddAura(v, player)
 		end
 	end
+
 	if (intid==6) then -- Repair all items 100%
 		player:DurabilityRepairAll(100,100)
 	end
+
 	if (intid==7) then -- Reset talent points. Salja's idea.
 		player:ResetTalents()
 		player:SendBroadcastMessage("|cff00cc00All your talents are reset!|r")
 	end
+
 	if(intid > 7) then -- Go back to main menu
 		player:GossipComplete()
 		OnPremiumHello(event, player)
