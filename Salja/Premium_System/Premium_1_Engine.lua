@@ -1,7 +1,7 @@
 -- a simple little system with a lot of potential
 -- Premium System by Salja of emudevs.com
 -- updated by slp13at420 of emudevs.com
--- NOTE: need to insert character_premium.sql in your auth.account database.table
+-- NOTE: you MUST do this below for this system to work.
 -- just add 1 column to your auth.account table:
 -- name `premium` : Datatype = TINYINT : Length/Set = 1 : Unsigned = checked : Default = 0
 -- then just add the npc vendor to your world.creature_template table.
@@ -11,8 +11,8 @@ print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
 
 local npcid = 101
 
-local despawn_timer = 60000 -- in ms for performingamespawn() // 1000 = 1 second // default 60000 = 60 seconds
-local respawn_timer = 60 -- in seconds for comaprison to GetGameTime()
+local despawn_timer = 60000 -- how long till vender de-spawns :: in ms for performingamespawn() // 1000 = 1 second // default 60000 = 60 seconds 
+local respawn_timer = 60 -- how long until player can summon another :: in seconds , for comaprison to GetGameTime()
 
 BUFFS = {};
 PREM = {};
