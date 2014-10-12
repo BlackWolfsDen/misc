@@ -46,6 +46,13 @@ end
 
 RegisterPlayerEvent(3, PremiumOnLogin) 
 
+local function PremiumOnLogout(event, player)
+
+	PREM[player:GetAccountId()] = nil
+	print(player:GetAccountName().." :Premium table dumped.")
+
+end
+
 local function UnSummonPremiumVendor(eventid, timer, player, creature)
 	creature:DespawnOrUnsummon(0)
 	WorldDBQuery("DELETE FROM world.creature WHERE `guid` = '"..creature:GetGUIDLow().."';") 
