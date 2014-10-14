@@ -4,7 +4,7 @@
 local Crespawntimer = {};
 local message = "#respawn" -- trigger message
 local GMrank = 2 -- minimum required rank to access this command
-local timer = 300000 -- cooldown timer in ms 1000 = 1 second :: 60000 = 1 minute :: 300000 = 5 minutes
+local timer = 300 -- cooldown timer in seconds 1 = 1 second :: 60 = 1 minute :: 300 = 5 minutes :: 900 = 15 minutes
 
 local function Crespawn(event, player, msg, Type, lang)
 
