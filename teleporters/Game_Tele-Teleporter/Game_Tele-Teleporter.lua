@@ -152,10 +152,11 @@ local function CheaterStoneOnSelect(event, player, unit, sender, intid, code)
 		player:GossipMenuAddItem(1, "goodbye <->", (offset+offset+2), 0)
 		player:GossipSendMenu(1, unit)
 	else
-	        local x, y, z, o, map,name = table.unpack(CHEATER[intid])
+	        local x, y, z, o, map, name = table.unpack(CHEATER[intid])
 	        player:Teleport(map, x, y, z, o)
 		player:GossipComplete()
-		CHEATSTONE[player:GetGUIDLow()] = {	page = nil,};
+		player:SendBroadcastMessage("You have been teleported you cheater.")
+		CHEATSTONE[player:GetGUIDLow()] = {page = nil,};
 	end			
 end
 
