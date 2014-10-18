@@ -10,9 +10,9 @@ local restart_msg = "load talker"
 local  ANN = {};
 
 ANN[npcid] = {
-	[1] = "!Hey!! Pay attention To Me !!.. !!BENDER!!",
-	[2] = "Hey sexy momma .. Wanna kill all humans..??.",
-	[3] = "Would you kindly shut your pie hole?",
+	[1] = {"!Hey!! Pay attention To Me !!.. !!BENDER!!", 1},
+	[2] = {"Hey sexy momma .. Wanna kill all humans..??.", 1},
+	[3] = {"Would you kindly shut your pie hole?", 0},
 		};
 
 local function Drop_Event_On_Death(eventid, creature, killer)
@@ -22,8 +22,15 @@ end
 RegisterCreatureEvent(npcid, 4, Drop_Event_On_Death)
 
 local function TimedSay(eventId, delay, repeats, creature)
-	yell = math.random(1, #ANN[npcid])
-	creature:SendUnitYell(ANN[npcid][yell], 0)
+
+yell = math.random(1, #ANN[npcid])
+
+	if(ANN[npcid][yell][2] == 0)then
+		creature:SendUnitSay(ANN[npcid][yell][1], 0)
+	else
+		creature:SendUnitYell(ANN[npcid][yell][1], 0)
+	end
+	
 	creature:RemoveEvents()
 	creature:RegisterEvent(TimedSay, delay, cycles)
 end
@@ -36,9 +43,9 @@ RegisterCreatureEvent(npcid, 23, OnReset)
 
 function ReloadTalker(event, player, msg) -- select creature and type `load talker`
 
-	 if(restart_msg)then 
+	 if(msg)then 
 	 
-		if((msg:lower() == message)and(player:GetGMRank() >= 3))then 
+		if((msg:lower() == restart_msg)and(player:GetGMRank() >= 3))then 
 
 			if(player:GetSelection():GetEntry() == npcid)then
 
