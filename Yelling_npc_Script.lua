@@ -4,7 +4,7 @@
 
 local npcid = 3100 -- 10000
 local delay = 1*60*1000 -- 60 seconds
-local cycles = 1 -- do not change our you may cause your core to freeze up. MUST onyl be value 1 or events will stack exponentially .
+local cycles = 1 -- do not change or you may cause your core to freeze up. MUST onyl be value 1 or events will stack exponentially .
 local GMrank = 3
 local restart_msg = "load talker"
 
