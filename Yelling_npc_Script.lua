@@ -5,6 +5,7 @@
 local npcid = 3100 -- 10000
 local delay = 1*60*1000 -- 60 seconds
 local cycles = 1 -- do not change our you may cause your core to freeze up. MUST onyl be value 1 or events will stack exponentially .
+local GMrank = 3
 local restart_msg = "load talker"
 
 local  ANN = {};
@@ -46,12 +47,13 @@ function ReloadTalker(event, player, msg) -- select creature and type `load talk
 
 	 if(msg)then 
 	 
-		if((msg:lower() == restart_msg)and(player:GetGMRank() >= 3))then 
+		if((msg:lower() == restart_msg)and(player:GetGMRank() >= GMrank))then 
 
 			if(player:GetSelection():GetEntry() == npcid)then
 
 				player:GetSelection():RegisterEvent(TimedSay, delay, cycles)
 			else
+				player:SendBroadcastMessage("wrong creature..")
 			end
 		else
 		end 
