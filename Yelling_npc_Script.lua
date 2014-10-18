@@ -10,9 +10,10 @@ local restart_msg = "load talker"
 local  ANN = {};
 
 ANN[npcid] = { -- {Statement, stated} :: Statement in quotes "blah blah", stated // say = 0 // yell = 1
-	[1] = {"!Hey!! Pay attention To Me !!.. !!BENDER!!", 1},
-	[2] = {"Hey sexy momma .. Wanna kill all humans..??.", 0},
-	[3] = {"Would you kindly shut your pie hole?", 0},
+	[1] = {"Hey sexy momma .. Wanna kill all humans..??.", 0},
+	[2] = {"Well,, were boned.", 0},
+	[3] = {"!Shut up and Pay attention To Me !!.. !!BENDER!!", 1},
+	[4] = {"!!Let's go allready!!", 1},
 		};
 
 local function Drop_Event_On_Death(eventid, creature, killer)
