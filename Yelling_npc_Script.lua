@@ -9,10 +9,10 @@ local restart_msg = "load talker"
 local  ANN = {};
 
 ANN[npcid] = {
-		[1] = "!Hey!! Pay attention To Me !!.. !!BENDER!!",
-		[2] = "Hey sexy momma .. Wanna kill all humans..??.",
-		[3] = "Would you kindly shut your pie hole?",
-				};
+	[1] = "!Hey!! Pay attention To Me !!.. !!BENDER!!",
+	[2] = "Hey sexy momma .. Wanna kill all humans..??.",
+	[3] = "Would you kindly shut your pie hole?",
+		};
 
 local function Drop_Event_On_Death(eventid, creature, killer)
 	creature:RemoveEvents()
