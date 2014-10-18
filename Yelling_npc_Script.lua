@@ -8,7 +8,7 @@ local cycles = 1
 local restart_msg = "load talker"
 
 local  ANN = {};
-
+-- {Statement, stated} statement in quotes "blah blah", stated // say = 0 // yell = 1
 ANN[npcid] = {
 	[1] = {"!Hey!! Pay attention To Me !!.. !!BENDER!!", 1},
 	[2] = {"Hey sexy momma .. Wanna kill all humans..??.", 1},
