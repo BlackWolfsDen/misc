@@ -2,7 +2,7 @@
 -- tweeked by slp13at420 of EmuDevs
 
 local npcid = 3100 -- 10000
-local delay = 1*10*1000 -- 10 seconds
+local delay = 1*60*1000 -- 60 seconds
 local cycles = 1
 local restart_msg = "load talker"
 
