@@ -1,5 +1,6 @@
 -- by Rochet2 of EmuDevs
 -- tweeked by slp13at420 of EmuDevs
+-- drunken slurred outbursts by Bender
 
 local npcid = 3100 -- 10000
 local delay = 1*60*1000 -- 60 seconds
