@@ -49,4 +49,3 @@ local function OnMotion(event, creature, unit)
 end
 
 RegisterCreatureEvent(npcid, 27, OnMotion)
-RegisterCreatureEvent(npcid, 23, OnMotion)
