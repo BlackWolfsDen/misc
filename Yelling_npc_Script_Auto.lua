@@ -41,9 +41,13 @@ end
 
 local function OnMotion(event, creature, unit)
 
-	if(ANN[creature:GetGUIDLow()]==nil)then  
-		ANN[creature:GetGUIDLow()] = {reset = 1,};
-	    creature:RegisterEvent(TimedSay, delay, cycles)
+	if(unit:GetObjectType()=="Player")then
+
+		if(ANN[creature:GetGUIDLow()]==nil)then  
+			ANN[creature:GetGUIDLow()] = {reset = 1,};
+		    creature:RegisterEvent(TimedSay, delay, cycles)
+		else
+		end
 	else
 	end
 end
