@@ -4,14 +4,14 @@
 
 local npcid = 3100 -- 10000
 local delay = 1*60*1000 -- 60 seconds
-local cycles = 1
+local cycles = 1 -- do not change our you may cause your core to freeze up MUST onyl be value 1 or events will stack exponentially .
 local restart_msg = "load talker"
 
 local  ANN = {};
 -- {Statement, stated} statement in quotes "blah blah", stated // say = 0 // yell = 1
 ANN[npcid] = {
 	[1] = {"!Hey!! Pay attention To Me !!.. !!BENDER!!", 1},
-	[2] = {"Hey sexy momma .. Wanna kill all humans..??.", 1},
+	[2] = {"Hey sexy momma .. Wanna kill all humans..??.", 0},
 	[3] = {"Would you kindly shut your pie hole?", 0},
 		};
 
