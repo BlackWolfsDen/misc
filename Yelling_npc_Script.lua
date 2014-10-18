@@ -11,7 +11,7 @@ local  ANN = {};
 
 ANN[npcid] = { -- {Statement, stated} :: Statement in quotes "blah blah", stated // say = 0 // yell = 1
 	[1] = {"Hey sexy momma .. Wanna kill all humans..??.", 0},
-	[2] = {"Well,, were boned.", 0},
+	[2] = {"Wellll were boned.", 0},
 	[3] = {"!Shut up and Pay attention To Me !!.. !!BENDER!!", 1},
 	[4] = {"!!Let's go allready!!", 1},
 		};
