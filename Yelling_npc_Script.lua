@@ -4,13 +4,25 @@
 local npcid = 3100 -- 10000
 local delay = 1*10*1000 -- 10 seconds
 local cycles = 1
+local restart_msg = "load talker"
+
+local  ANN = {};
+
+ANN[npcid] = {
+		[1] = "!Hey!! Pay attention To Me !!.. !!BENDER!!",
+		[2] = "Hey sexy momma .. Wanna kill all humans..??.",
+		[3] = "Would you kindly shut your pie hole?",
+				};
 
 local function Drop_Event_On_Death(eventid, creature, killer)
 	creature:RemoveEvents()
 end
 
+RegisterCreatureEvent(npcid, 4, Drop_Event_On_Death)
+
 local function TimedSay(eventId, delay, repeats, creature)
-	creature:SendUnitYell("Hey !! Pay attention to me !! BENDER !!", 0)
+	yell = math.random(1, #ANN[npcid])
+	creature:SendUnitYell(ANN[npcid][yell], 0)
 	creature:RemoveEvents()
 	creature:RegisterEvent(TimedSay, delay, cycles)
 end
@@ -23,9 +35,7 @@ RegisterCreatureEvent(npcid, 23, OnReset)
 
 function ReloadTalker(event, player, msg) -- select creature and type `load talker`
 
-local message = "load talker"
-
-	 if(msg)then 
+	 if(restart_msg)then 
 	 
 		if((msg:lower() == message)and(player:GetGMRank() >= 3))then 
 
