@@ -9,8 +9,9 @@ local cycles = 1
 
 local  ANN = {};
 -- {Statement, stated, linked, emote} 
--- statement in quotes "blah blah" 
+-- statement :: the outburst in quotes "blah blah" 
 -- stated :: say = 0 // yell = 1 
+-- linked :: the next table key id if using 2 statements(say AND yell) for 1 outburst.
 -- emote :: talk = 1 // yell = 5// Question = 6 // Dance = 10 // Rude = 14 // shout = 22 // 
 
 ANN[npcid] = {
