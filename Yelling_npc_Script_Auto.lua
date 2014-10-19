@@ -1,18 +1,17 @@
 -- request by Vitrex
--- Script by Rochet2 of EmuDevs
--- updated by slp13at420 of EmuDevs
+-- by Rochet2 of EmuDevs
+-- tweeked by slp13at420 of EmuDevs
 -- drunken slurred outbursts by Bender
 
-local npcid = {3100, 3101,3102};
-local delay = 1*60*1000 -- 60 seconds
+local npcid = {10000, 10001, 10002}; you can apply this to multiple npc's here.
+local delay = 1*30*1000 -- 30 seconds
 local cycles = 1
 
 local  ANN = {};
 -- {Statement, stated, linked, emote} 
--- statement :: the outburst in quotes "blah blah" 
--- stated :: say = 0 // yell = 1 
--- linked :: the next table key id if using 2 statements(say AND yell) for 1 outburst.
--- emote :: talk = 1 // yell = 5// Question = 6 // Dance = 10 // Rude = 14 // shout = 22 // 
+-- statement in quotes "blah blah" 
+-- stated // say = 0 // yell = 1 
+-- emote talk = 1 // yell = 5// Question = 6 // Dance = 10 // Rude = 14 // shout = 22 // 
 
 ANN[npcid] = {
 	[1] = {"Well,, that was dumb.", 0, 0, 1},
@@ -22,15 +21,15 @@ ANN[npcid] = {
 	[5] = {"Goodbye losers whom I allways hated", 1, 0, 22},
 	[6] = {"!Shut the hell up!", 1, 0, 5},
 	[7] = {"Would you kindly shut your noise hole?", 0, 0, 1},
-	[8] = {"I'm gonna go build my own theme park.. with blackjack and hookerz.", 0, 1001, 1},
+	[8] = {"I'm gonna go build my own theme park.. with blackjack and hookerz.", 0, 101, 1},
 	[9] = {"Who are you and why should i care?", 0, 0, 6},
 	[10] = {"!Shut up and Pay attention To Me !!.. !!BENDER!!", 1, 0, 5},
 	[11] = {"Hasta La Vista , Meat bag.", 0, 0, 1},
-	[12] = {"Awww, heres a little song i wrote to cheer you up. Its called ", 0, 1000, 1},
+	[12] = {"Awww, heres a little song i wrote to cheer you up. Its called ", 0, 100, 1},
 	[13] = {"Do the Bender ,, Do the Bender ,, its your birthday ,, do the bender", 0, 0, 10},
 	[14] = {"Shut up baby , you love it", 0, 0, 1},
-	[1000] = {"!!Let's go allready!!", 1, 0, 5}, -- linked
-	[1001] = {"In fact ,, forget the park.", 0, 0, 1}, -- linked
+	[100] = {"!!Let's go allready!!", 1, 0, 5}, -- linked
+	[101] = {"In fact ,, forget the park.", 0, 0, 1}, -- linked
 		};
 		
 local function Drop_Event_On_Death(eventid, creature, killer)
@@ -59,8 +58,9 @@ local function TimedSay(eventId, delay, repeats, creature)
 	local ostime = tonumber(GetGameTime())
 	local seed = (ostime*ostime)
 	math.randomseed(seed)
-
+	
 	local Ann = math.random(1, #ANN[npcid])
+
 	Announce(Ann, creature)	
 	creature:RemoveEvents()
 	ANN[creature:GetGUIDLow()] = nil;
@@ -83,6 +83,7 @@ local function OnMotion(event, creature, unit)
 end
 
 for npc=1, #npcid do
+
 	RegisterCreatureEvent(npcid[npc], 27, OnMotion) 
 	RegisterCreatureEvent(npcid[npc], 4, Drop_Event_On_Death)
 end
