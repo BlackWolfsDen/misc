@@ -1,6 +1,6 @@
 -- request by Vitrex
--- by Rochet2 of EmuDevs
--- tweeked by slp13at420 of EmuDevs
+-- Script by Rochet2 of EmuDevs
+-- Updated by slp13at420 of EmuDevs
 -- drunken slurred outbursts by Bender
 
 local npcid = {10000, 10001, 10002}; you can apply this to multiple npc's here.
