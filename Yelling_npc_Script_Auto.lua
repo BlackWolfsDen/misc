@@ -4,7 +4,7 @@
 -- drunken slurred outbursts by Bender
 
 -- to make it fire only when activly moving players are 
--- close enough to trigger event 27 remove the two lines marcked Constant
+-- close enough to trigger event 27 remove the two lines marked Constant
 -- then the npc will go idle when no players around.
 
 local npcid = {10000, 10001, 10002}; -- you can apply this to multiple npc's here.
