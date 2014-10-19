@@ -9,9 +9,10 @@ local cycles = 1
 
 local  ANN = {};
 -- {Statement, stated, linked, emote} 
--- statement in quotes "blah blah" 
+-- statement // in quotes "blah blah" 
 -- stated // say = 0 // yell = 1 
--- emote talk = 1 // yell = 5// Question = 6 // Dance = 10 // Rude = 14 // shout = 22 // 
+-- linked // table key id if your using multiple statements  for one announcement i.e.(yell THEN say)
+-- emote // talk = 1 // yell = 5// Question = 6 // Dance = 10 // Rude = 14 // shout = 22 // 
 -- http://collab.kpsn.org/display/tc/Emote
 
 ANN[npcid] = {
@@ -65,8 +66,8 @@ local function TimedSay(eventId, delay, repeats, creature)
 	Announce(Ann, creature)	
 	creature:RemoveEvents()
 	ANN[creature:GetGUIDLow()] = nil;
-	creature:RegisterEvent(TimedSay, delay, cycles)
-	ANN[creature:GetGUIDLow()] = {reset = 1,};
+	creature:RegisterEvent(TimedSay, delay, cycles) -- Constant
+	ANN[creature:GetGUIDLow()] = {reset = 1,}; -- Constant
 
 end
 
