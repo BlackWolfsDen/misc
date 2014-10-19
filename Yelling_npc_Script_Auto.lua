@@ -4,7 +4,7 @@
 -- drunken slurred outbursts by Bender
 -- to make it fire only when activly moving players are close enough to trigger event 27 remove the two lines marcked Constant.
 
-local npcid = {10000, 10001, 10002}; you can apply this to multiple npc's here.
+local npcid = {10000, 10001, 10002}; -- you can apply this to multiple npc's here.
 local delay = 1*30*1000 -- 30 seconds
 local cycles = 1 -- must be value 1 . any value other than 1 MAY cause events to stack and freeze the core.
 
