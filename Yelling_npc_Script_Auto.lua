@@ -4,12 +4,13 @@
 -- drunken slurred outbursts by Bender
 
 -- to make it fire only when activly moving players are 
--- close enough to trigger event 27 remove the two lines marked Constant
+-- close enough to trigger event 27 set `allways` to 0
 -- then the npc will go idle when no players around.
 
 local npcid = {10000, 10001, 10002}; -- you can apply this to multiple npc's here.
 local delay = 1*30*1000 -- 30 seconds
 local cycles = 1 -- must be value 1 . any value other than 1 MAY cause events to stack and freeze the core.
+local allways = 1 -- constant fire after trigger = 1 // neutral after triggered fire = 0
 
 local  ANN = {};
 -- {Statement, stated, linked, emote, spellid} 
@@ -78,8 +79,11 @@ local function TimedSay(eventId, delay, repeats, creature)
 	Announce(Ann, creature)	
 	creature:RemoveEvents()
 	ANN[creature:GetGUIDLow()] = nil;
-	creature:RegisterEvent(TimedSay, delay, cycles) -- Constant
-	ANN[creature:GetGUIDLow()] = {reset = 1,}; -- Constant
+		
+	if(allways == 1)then
+		creature:RegisterEvent(TimedSay, delay, cycles)
+		ANN[creature:GetGUIDLow()] = {reset = 1,};
+	end
 
 end
 
