@@ -43,23 +43,23 @@ end
 
 local function Announce(id, creature)
 
-	if(ANN[npcid][id][4] ~= (nil or 0))then
+	if(ANN[npcid][id][4] ~= (nil or 0))then -- check emote column for emote.
 		creature:Emote(ANN[npcid][id][4])
 	end
 
-	if(ANN[npcid][id][2] == 0)then
+	if(ANN[npcid][id][2] == 0)then -- check stated column if say.
 		creature:SendUnitSay(ANN[npcid][id][1], 0)
 	end
 
-	if(ANN[npcid][id][2] == 1)then
+	if(ANN[npcid][id][2] == 1)then -- check stated column if yell.
 		creature:SendUnitYell(ANN[npcid][id][1], 0)
 	end
 
-	if(ANN[npcid][id][3]~=(nil or 0))then
+	if(ANN[npcid][id][3]~=(nil or 0))then -- check the linked column for key id.
 		Announce(ANN[npcid][id][3], creature)
 	end
 
-	if(ANN[npcid][id][5] ~= (nil or 0))then
+	if(ANN[npcid][id][5] ~= (nil or 0))then -- check the spellid column for spell id.
 		creature:CastSpell(ANN[npcid][id][5])
 	end
 end
