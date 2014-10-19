@@ -12,7 +12,7 @@ local delay = 1*30*1000 -- 30 seconds
 local cycles = 1 -- must be value 1 . any value other than 1 MAY cause events to stack and freeze the core.
 
 local  ANN = {};
--- {Statement, stated, linked, emote} 
+-- {Statement, stated, linked, emote, spellid} 
 -- statement // in quotes "blah blah" 
 -- stated // say = 0 // yell = 1 
 -- linked // table key id if your using multiple statements  for one announcement i.e.(yell THEN say)
@@ -28,15 +28,15 @@ ANN[npcid] = {-- {"Statement", stated, linked, emote, spellid}
 	[5] = {"Goodbye losers whom I allways hated", 1, 0, 22, 0},
 	[6] = {"!Shut the hell up!", 1, 0, 5, 0},
 	[7] = {"Would you kindly shut your noise hole?", 0, 0, 1},
-	[8] = {"I'm gonna go build my own theme park.. with blackjack and hookerz.", 0, 101, 1, 0},
+	[8] = {"I'm gonna go build my own theme park.. with blackjack and hookerz.", 0, 101, 1, 0}, -- links to 101
 	[9] = {"Who are you and why should i care?", 0, 0, 6, 0},
 	[10] = {"!Shut up and Pay attention To Me !!.. !!BENDER!!", 1, 0, 5, 0},
 	[11] = {"Hasta La Vista , Meat bag.", 0, 0, 1, 0},
-	[12] = {"Awww, heres a little song i wrote to cheer you up. Its called ", 0, 100, 1, 0},
+	[12] = {"Awww, heres a little song i wrote to cheer you up. Its called ", 0, 100, 1, 0}, -- links to 100
 	[13] = {"Do the Bender ,, Do the Bender ,, its your birthday ,, do the bender", 0, 0, 10, 0},
 	[14] = {"Shut up baby , you love it", 0, 0, 1, 0},
-	[100] = {"!!Let's go allready!!", 1, 0, 5, 0}, -- linked
-	[101] = {"In fact ,, forget the park.", 0, 0, 1, 0}, -- linked
+	[100] = {"!!Let's go allready!!", 1, 0, 5, 0}, -- linked from 8
+	[101] = {"In fact ,, forget the park.", 0, 0, 1, 0}, -- linked from 12
 		};
 		
 local function Drop_Event_On_Death(eventid, creature, killer)
