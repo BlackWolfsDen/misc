@@ -14,10 +14,10 @@ local  ANN = {};
 -- stated // say = 0 // yell = 1 
 -- linked // table key id if your using multiple statements  for one announcement i.e.(yell THEN say)
 -- emote // talk = 1 // yell = 5// Question = 6 // Dance = 10 // Rude = 14 // shout = 22 // 
--- spell // spell id
+-- spellid // spell id
 -- http://collab.kpsn.org/display/tc/Emote
 
-ANN[npcid] = {
+ANN[npcid] = {-- {"Statement", stated, linked, emote, spellid} 
 	[1] = {"Well,, that was dumb.", 0, 0, 1, 0},
 	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0},
 	[3] = {"Well,, were boned.", 0, 0, 1},
