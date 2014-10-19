@@ -1,16 +1,17 @@
--- by Rochet2 of EmuDevs
--- tweeked by slp13at420 of EmuDevs
+-- request by Vitrex
+-- Script by Rochet2 of EmuDevs
+-- updated by slp13at420 of EmuDevs
 -- drunken slurred outbursts by Bender
 
 local npcid = {3100, 3101,3102};
-local delay = 1*10*1000 -- 60 seconds
+local delay = 1*60*1000 -- 60 seconds
 local cycles = 1
 
 local  ANN = {};
 -- {Statement, stated, linked, emote} 
 -- statement in quotes "blah blah" 
--- stated // say = 0 // yell = 1 
--- emote talk = 1 // yell = 5// Question = 6 // Dance = 10 // Rude = 14 // shout = 22 // 
+-- stated :: say = 0 // yell = 1 
+-- emote :: talk = 1 // yell = 5// Question = 6 // Dance = 10 // Rude = 14 // shout = 22 // 
 
 ANN[npcid] = {
 	[1] = {"Well,, that was dumb.", 0, 0, 1},
