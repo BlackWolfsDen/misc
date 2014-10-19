@@ -31,15 +31,13 @@ ANN[npcid] = {
 	[1001] = {"In fact ,, forget the park.", 0, 0, 1}, -- linked
 		};
 		
-print("MAX", #ANN[npcid])
-
 local function Drop_Event_On_Death(eventid, creature, killer)
 	ANN[creature:GetGUIDLow()] = nil;
 	creature:RemoveEvents()
 end
 
 local function Announce(id, creature)
-print(id)
+
 	if(ANN[npcid][id][4] ~= (nil or 0))then
 		creature:Emote(ANN[npcid][id][4])
 	end
@@ -57,7 +55,6 @@ end
 local function TimedSay(eventId, delay, repeats, creature)
 
 	local Ann = math.random(1, #ANN[npcid])
-print(table.concat{"ANN ", Ann})
 	Announce(Ann, creature)	
 	creature:RemoveEvents()
 	ANN[creature:GetGUIDLow()] = nil;
