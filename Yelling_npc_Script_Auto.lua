@@ -1,4 +1,5 @@
--- by Rochet2 of EmuDevs
+-- Request by Xaver
+-- Code by Rochet2 of EmuDevs
 -- tweeked by slp13at420 of EmuDevs
 -- drunken slurred outbursts by Bender
 
