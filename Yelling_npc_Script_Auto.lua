@@ -56,6 +56,10 @@ end
 
 local function TimedSay(eventId, delay, repeats, creature)
 
+	local ostime = tonumber(GetGameTime())
+	local seed = (ostime*ostime)
+	math.randomseed(seed)
+
 	local Ann = math.random(1, #ANN[npcid])
 	Announce(Ann, creature)	
 	creature:RemoveEvents()
