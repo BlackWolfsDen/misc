@@ -16,7 +16,7 @@ ANN[npcid] = {
 		};
 
 local function Drop_Event_On_Death(eventid, creature, killer)
-	ANN[creature:GetGUIDLow()] = {reset = nil,};
+	ANN[creature:GetGUIDLow()] = nil;
 	creature:RemoveEvents()
 end
 
@@ -24,7 +24,7 @@ RegisterCreatureEvent(npcid, 4, Drop_Event_On_Death)
 
 local function TimedSay(eventId, delay, repeats, creature)
 
-ANN[creature:GetGUIDLow()] = {reset = nil,};
+ANN[creature:GetGUIDLow()] = nil;
 
 yell = math.random(1, #ANN[npcid])
 
@@ -35,8 +35,8 @@ yell = math.random(1, #ANN[npcid])
 	end
 	
 	creature:RemoveEvents()
-	creature:RegisterEvent(TimedSay, delay, cycles)
-	ANN[creature:GetGUIDLow()] = {reset = 1,};
+	creature:RegisterEvent(TimedSay, delay, cycles)  -- Constant
+	ANN[creature:GetGUIDLow()] = {reset = 1,}; -- Constant
 end
 
 local function OnMotion(event, creature, unit)
@@ -45,7 +45,7 @@ local function OnMotion(event, creature, unit)
 
 		if(ANN[creature:GetGUIDLow()]==nil)then  
 			ANN[creature:GetGUIDLow()] = {reset = 1,};
-		    creature:RegisterEvent(TimedSay, delay, cycles)
+			creature:RegisterEvent(TimedSay, delay, cycles)
 		else
 		end
 	else
