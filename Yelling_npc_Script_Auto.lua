@@ -64,7 +64,7 @@ local function Announce(id, creature)
 	end
 
 	if(ANN[npcid][id][5] ~= (nil or 0))then -- check the spellid column for spell id.
-		creature:CastSpell(ANN[npcid][id][5])
+		creature:CastSpell(creature, ANN[npcid][id][5], true)
 	end
 end
 
