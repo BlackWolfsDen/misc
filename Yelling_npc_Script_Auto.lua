@@ -41,7 +41,7 @@ ANN[npcid] = {-- {"Statement", stated, linked, emote, spellid}
 	[101] = {"In fact ,, forget the park.", 0, 0, 1, 0}, -- linked from 12
 		};
 		
-local function Drop_Event_On_Death(eventid, creature, killer)
+local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc.
 	ANN[creature:GetGUIDLow()] = nil;
 	creature:RemoveEvents()
 end
@@ -77,11 +77,11 @@ local function TimedSay(eventId, delay, repeats, creature)
 	
 	local Ann = math.random(1, #ANN[npcid])
 
-	Announce(Ann, creature)	
+	Announce(Ann, creature) -- sends the data to Announce function
 	creature:RemoveEvents()
 	ANN[creature:GetGUIDLow()] = nil;
 		
-	if(allways == 1)then
+	if(allways == 1)then -- checks switch for continuous 1
 		creature:RegisterEvent(TimedSay, delay, cycles)
 		ANN[creature:GetGUIDLow()] = {reset = 1,};
 	end
