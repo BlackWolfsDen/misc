@@ -23,16 +23,16 @@ local  ANN = {};
 -- http://collab.kpsn.org/display/tc/Emote
 
 ANN[npcid] = {-- {"Statement", stated, linked, emote, spellid} 
-	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837}, -- uses spell
-	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0}, -- uses Emote 14
-	[3] = {"Well,, were boned.", 0, 0, 1, 0}, -- uses Emote 1
-	[4] = {"Hey sexy momma .. Wanna kill all humans..??.", 0, 0, 1, 58837}, -- uses spell
-	[5] = {"Goodbye losers whom I allways hated", 1, 0, 22, 0},
-	[6] = {"!Shut the hell up!", 1, 0, 5, 0},
-	[7] = {"Would you kindly shut your noise hole?", 0, 0, 1, 0},
-	[8] = {"I'm gonna go build my own theme park.. with blackjack and hookerz.", 0, 101, 1, 0}, -- links to 101
-	[9] = {"Who are you and why should i care?", 0, 0, 25, 0},
-	[10] = {"!Shut up and Pay attention To Me !!.. !!BENDER!!", 1, 0, 5, 0},
+	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837}, -- say, Emote 1, spell 58837
+	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0}, -- yell, Emote 14
+	[3] = {"Well,, were boned.", 0, 0, 1, 0}, -- say, Emote 1
+	[4] = {"Hey sexy momma .. Wanna kill all humans..??.", 0, 0, 1, 58837}, -- say, Emote 1, spell 58837
+	[5] = {"Goodbye losers whom I allways hated", 1, 0, 22, 0}, -- yell, emote 22
+	[6] = {"!Shut the hell up!", 1, 0, 5, 0}, -- yell, emote 5
+	[7] = {"Would you kindly shut your noise hole?", 0, 0, 1, 0}, -- say, emote 1
+	[8] = {"I'm gonna go build my own theme park.. with blackjack and hookerz.", 0, 101, 1, 0}, -- say, emote 1, links to 101
+	[9] = {"Who are you and why should i care?", 0, 0, 25, 0}, -- say, emote 25
+	[10] = {"!Shut up and Pay attention To Me !!.. !!BENDER!!", 1, 0, 5, 0}, -- yell , emote 5
 	[11] = {"Hasta La Vista , Meat bag.", 0, 0, 1, 0},
 	[12] = {"Awww, heres a little song i wrote to cheer you up. Its called ", 0, 100, 1, 0}, -- links to 100
 	[13] = {"Do the Bender ,, Do the Bender ,, its your birthday ,, do the bender", 0, 0, 10, 0},
