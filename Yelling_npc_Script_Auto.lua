@@ -7,7 +7,7 @@
 -- close enough to trigger event 27 set `allways` to 0
 -- then the npc will go idle when no players around.
 
-local npcid = {3100, 3101, 3102}; -- you can apply this to multiple npc's here.
+local npcid = {3100, 3101, 3102}; -- you can apply this to one or multiple npc's here.
 local delay = 1*30*1000 -- 30 seconds
 local cycles = 1 -- must be value 1 . any value other than 1 MAY cause events to stack and freeze the core.
 local allways = 1 -- constant fire after triggered = 1 // neutral after triggered fires once = 0
