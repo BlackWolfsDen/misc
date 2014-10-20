@@ -3,6 +3,8 @@
 -- Updated by slp13at420 of EmuDevs
 -- drunken slurred outbursts by Bender
 
+-- with `allways` set to 1 The npc will start once a player is moving 
+-- close enough to trigger event 27 then it will babble non-stop.
 -- to make it fire only when activly moving players are 
 -- close enough to trigger event 27 set `allways` to 0
 -- then the npc will go idle when no players around.
