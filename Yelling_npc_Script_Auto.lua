@@ -7,12 +7,13 @@
 -- close enough to trigger event 27 set `allways` to 0
 -- then the npc will go idle when no players around.
 
-local npcid = {10000, 10001, 10002}; -- you can apply this to multiple npc's here.
+local npcid = {3100, 3101, 3102}; -- you can apply this to multiple npc's here.
 local delay = 1*30*1000 -- 30 seconds
 local cycles = 1 -- must be value 1 . any value other than 1 MAY cause events to stack and freeze the core.
-local allways = 1 -- constant fire after trigger = 1 // neutral after triggered fire = 0
+local allways = 1 -- constant fire after triggered = 1 // neutral after triggered fires once = 0
 
 local  ANN = {};
+
 -- {Statement, stated, linked, emote, spellid} 
 -- statement // in quotes "blah blah" 
 -- stated // say = 0 // yell = 1 
@@ -22,20 +23,20 @@ local  ANN = {};
 -- http://collab.kpsn.org/display/tc/Emote
 
 ANN[npcid] = {-- {"Statement", stated, linked, emote, spellid} 
-	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837},
-	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0},
-	[3] = {"Well,, were boned.", 0, 0, 1, 0},
-	[4] = {"Hey sexy momma .. Wanna kill all humans..??.", 0, 0, 1, 58837},
+	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837}, -- uses spell
+	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0}, -- uses Emote 14
+	[3] = {"Well,, were boned.", 0, 0, 1, 0}, -- uses Emote 1
+	[4] = {"Hey sexy momma .. Wanna kill all humans..??.", 0, 0, 1, 58837}, -- uses spell
 	[5] = {"Goodbye losers whom I allways hated", 1, 0, 22, 0},
 	[6] = {"!Shut the hell up!", 1, 0, 5, 0},
 	[7] = {"Would you kindly shut your noise hole?", 0, 0, 1, 0},
 	[8] = {"I'm gonna go build my own theme park.. with blackjack and hookerz.", 0, 101, 1, 0}, -- links to 101
-	[9] = {"Who are you and why should i care?", 0, 0, 29, 0},
+	[9] = {"Who are you and why should i care?", 0, 0, 25, 0},
 	[10] = {"!Shut up and Pay attention To Me !!.. !!BENDER!!", 1, 0, 5, 0},
 	[11] = {"Hasta La Vista , Meat bag.", 0, 0, 1, 0},
 	[12] = {"Awww, heres a little song i wrote to cheer you up. Its called ", 0, 100, 1, 0}, -- links to 100
 	[13] = {"Do the Bender ,, Do the Bender ,, its your birthday ,, do the bender", 0, 0, 10, 0},
-	[14] = {"Shut up baby , you love it", 0, 0, 1, 58837},
+	[14] = {"Shut up baby , you love it", 0, 0, 1, 58837}, -- uses spell
 	[100] = {"!!Let's go allready!!", 1, 0, 5, 0}, -- linked from 8
 	[101] = {"In fact ,, forget the park.", 0, 0, 1, 0}, -- linked from 12
 		};
