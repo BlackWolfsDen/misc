@@ -85,7 +85,6 @@ local function TimedSay(eventId, delay, repeats, creature)
 		creature:RegisterEvent(TimedSay, delay, cycles)
 		ANN[creature:GetGUIDLow()] = {reset = 1,};
 	end
-
 end
 
 local function OnMotion(event, creature, unit)
