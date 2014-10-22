@@ -26,7 +26,7 @@ local  ANN = {};
 -- spellid // spell id
 -- http://collab.kpsn.org/display/tc/Emote
 
-ANN[npcid] = {-- {"Statement", stated, linked, emote, spellid} 
+ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid} 
 	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837}, -- say, Emote 1, spell 58837
 	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0}, -- yell, Emote 14
 	[3] = {"Well,, were boned.", 0, 0, 1, 0}, -- say, Emote 1
@@ -51,30 +51,30 @@ end
 
 local function Announce(id, creature)
 
-	if(ANN[npcid][id][4] ~= (nil or 0))then -- check emote column for emote.
-		creature:Emote(ANN[npcid][id][4])
+	if(ANN["Bender"][id][4] ~= (nil or 0))then -- check emote column for emote.
+		creature:Emote(ANN["Bender"][id][4])
 	end
 
-	if(ANN[npcid][id][2] == 0)then -- check stated column if say.
-		creature:SendUnitSay(ANN[npcid][id][1], 0)
+	if(ANN["Bender"][id][2] == 0)then -- check stated column if say.
+		creature:SendUnitSay(ANN["Bender"][id][1], 0)
 	end
 
-	if(ANN[npcid][id][2] == 1)then -- check stated column if yell.
-		creature:SendUnitYell(ANN[npcid][id][1], 0)
+	if(ANN["Bender"][id][2] == 1)then -- check stated column if yell.
+		creature:SendUnitYell(ANN["Bender"][id][1], 0)
 	end
 
-	if(ANN[npcid][id][3]~=(nil or 0))then -- check the linked column for key id.
-		Announce(ANN[npcid][id][3], creature)
+	if(ANN["Bender"][id][3]~=(nil or 0))then -- check the linked column for key id.
+		Announce(ANN["Bender"][id][3], creature)
 	end
 
-	if(ANN[npcid][id][5] ~= (nil or 0))then -- check the spellid column for spell id.
-		creature:CastSpell(creature, ANN[npcid][id][5], true)
+	if(ANN["Bender"][id][5] ~= (nil or 0))then -- check the spellid column for spell id.
+		creature:CastSpell(creature, ANN["Bender"][id][5], true)
 	end
 end
 
 local function TimedSay(eventId, delay, repeats, creature)
 
-	local Ann = math.random(1, #ANN[npcid])
+	local Ann = math.random(1, #ANN["Bender"])
 
 	Announce(Ann, creature) -- sends the data to Announce function
 	creature:RemoveEvents()
