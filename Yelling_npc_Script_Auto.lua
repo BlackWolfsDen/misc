@@ -53,25 +53,16 @@ local function Announce(id, creature)
 	
 local statement, stated, linked, emote, spellid = table.unpack(ANN["Bender"][id])
 
-	if(emote ~= (nil or 0))then -- check emote column for emote.
-		creature:Emote(emote)
-	end
+	if(emote ~= (nil or 0))then creature:Emote(emote)end -- check emote column for emote.
 
-	if(stated == 0)then -- check stated column if say.
-		creature:SendUnitSay(statement, 0)
-	end
+	if(stated == 0)then creature:SendUnitSay(statement, 0); end-- check stated column if say.
 
-	if(stated == 1)then -- check stated column if yell.
-		creature:SendUnitYell(statement, 0)
-	end
+	if(stated == 1)then creature:SendUnitYell(statement, 0); end -- check stated column if yell.
 
-	if(linked ~= (nil or 0))then -- check the linked column for key id.
-		Announce(linked, creature)
-	end
+	if(linked ~= (nil or 0))then Announce(linked, creature) end -- check the linked column for key id.
 
-	if(spellid ~= (nil or 0))then -- check the spellid column for spell id.
-		creature:CastSpell(creature, spellid)
-	end
+	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
+
 end
 
 local function TimedSay(eventId, delay, repeats, creature)
