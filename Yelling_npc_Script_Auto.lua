@@ -75,10 +75,6 @@ end
 
 local function TimedSay(eventId, delay, repeats, creature)
 
-	local ostime = tonumber(GetGameTime())
-	local seed = (ostime*ostime)
-	math.randomseed(seed)
-	
 	local Ann = math.random(1, #ANN[npcid])
 
 	Announce(Ann, creature) -- sends the data to Announce function
@@ -109,3 +105,5 @@ for npc=1, #npcid do
 	RegisterCreatureEvent(npcid[npc], 27, OnMotion) 
 	RegisterCreatureEvent(npcid[npc], 4, Drop_Event_On_Death)
 end
+
+math.randomseed(os.time());
