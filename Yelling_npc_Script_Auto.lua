@@ -50,25 +50,27 @@ local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL eve
 end
 
 local function Announce(id, creature)
+	
+local statement, stated, linked, emote, spellid = table.unpack(ANN["Bender"][id])
 
-	if(ANN["Bender"][id][4] ~= (nil or 0))then -- check emote column for emote.
-		creature:Emote(ANN["Bender"][id][4])
+	if(emote ~= (nil or 0))then -- check emote column for emote.
+		creature:Emote(emote)
 	end
 
-	if(ANN["Bender"][id][2] == 0)then -- check stated column if say.
-		creature:SendUnitSay(ANN["Bender"][id][1], 0)
+	if(stated == 0)then -- check stated column if say.
+		creature:SendUnitSay(statement, 0)
 	end
 
-	if(ANN["Bender"][id][2] == 1)then -- check stated column if yell.
-		creature:SendUnitYell(ANN["Bender"][id][1], 0)
+	if(stated == 1)then -- check stated column if yell.
+		creature:SendUnitYell(statement, 0)
 	end
 
-	if(ANN["Bender"][id][3]~=(nil or 0))then -- check the linked column for key id.
-		Announce(ANN["Bender"][id][3], creature)
+	if(linked ~= (nil or 0))then -- check the linked column for key id.
+		Announce(linked, creature)
 	end
 
-	if(ANN["Bender"][id][5] ~= (nil or 0))then -- check the spellid column for spell id.
-		creature:CastSpell(creature, ANN["Bender"][id][5], true)
+	if(spellid ~= (nil or 0))then -- check the spellid column for spell id.
+		creature:CastSpell(creature, spellid)
 	end
 end
 
