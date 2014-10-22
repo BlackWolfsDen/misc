@@ -14,7 +14,7 @@
 local npcid = {3100, 3101, 3102}; -- you can apply this to one or multiple npc's here.
 local delay = 1*30*1000 -- 30 seconds
 local cycles = 1 -- must be value 1 . any value other than 1 MAY cause events to stack and freeze the core.
-local allways = 1 -- constant fire after triggered = 1 // neutral after triggered fires once = 0
+local allways = 0 -- constant fire after triggered = 0 // neutral after triggered fires once = 1
 
 local  ANN = {};
 
@@ -82,7 +82,7 @@ local function TimedSay(eventId, delay, repeats, creature)
 	creature:RemoveEvents()
 	ANN[creature:GetGUIDLow()] = nil;
 		
-	if(allways == 1)then -- checks switch for continuous 1
+	if(allways == 0)then -- checks switch for continuous 1
 		creature:RegisterEvent(TimedSay, delay, cycles)
 		ANN[creature:GetGUIDLow()] = {reset = 1,};
 	end
