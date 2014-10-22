@@ -46,7 +46,7 @@ ANN[npcid] = {-- {"Statement", stated, linked, emote, spellid}
 		};
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc.
-	ANN[creature:GetGUIDLow()] = nil;
+	ANN[creature:GetGUIDLow()] = nil; -- even in death this script will cause the npc to continue to say/yell
 	creature:RemoveEvents()
 end
 
