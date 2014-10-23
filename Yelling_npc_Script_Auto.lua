@@ -68,12 +68,8 @@ end
 
 local function TimedSay(eventId, delay, repeats, creature)
 
-	local Ann = math.random(1, #ANN["Bender"])
+Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
 
-	Announce(Ann, creature) -- sends the data to Announce function
-	creature:RemoveEvents()
-	ANN[creature:GetGUIDLow()] = nil;
-		
 	if(allways == 0)then -- checks switch for continuous 1
 		creature:RegisterEvent(TimedSay, delay, cycles)
 		ANN[creature:GetGUIDLow()] = {reset = 1,};
