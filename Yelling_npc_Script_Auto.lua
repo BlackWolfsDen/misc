@@ -12,6 +12,7 @@
 local npcid = {3100, 3101, 3102}; -- you can apply this to one or multiple npc's here.
 local delay = 1*30*1000 -- 30 seconds
 local range = 15 -- the distance an idle player can be from the npc to trigger a continuous outburst.
+
 local  ANN = {};
 
 -- {Statement, stated, linked, emote, spellid} 
