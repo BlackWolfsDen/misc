@@ -11,7 +11,7 @@
 
 local npcid = {3100, 3101, 3102}; -- you can apply this to one or multiple npc's here.
 local delay = 1*30*1000 -- 30 seconds
-
+local range = 15 -- the distance an idle player can be from the npc to trigger a continuous outburst.
 local  ANN = {};
 
 -- {Statement, stated, linked, emote, spellid} 
@@ -66,7 +66,7 @@ local function TimedSay(eventId, duration, repeats, creature)
 
 Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
 
-	if(#creature:GetPlayersInRange(10) >= 1)then -- check for continue if idle players are still in range.
+	if(#creature:GetPlayersInRange(range) >= 1)then -- check for continue if idle players are still in range.
 		creature:RegisterEvent(TimedSay, delay, 1)
 		ANN[creature:GetGUIDLow()] = {reset = 1,};
 	else
