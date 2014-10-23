@@ -1,20 +1,16 @@
 -- request by Vitrex
 -- Script by Rochet2 of EmuDevs
 -- Updated by slp13at420 of EmuDevs
--- drunken slurred outbursts by Bender
+-- drunken slurred outbursts by `Bender the drunken annoying robot`
 
--- with `allways` set to 1 The npc will start once a player is moving 
--- close enough to trigger event 27 then it will babble non-stop.
--- to make it fire only when activly moving players are 
--- close enough to trigger event 27 set `allways` to 0
--- then the npc will go idle when no players around.
+-- The npc will start once a player is moving close enough to trigger event 27
+-- then it will babble non-stop while players are moving or idle near it.
+-- then the npc will automaticaly go idle when no players around.
 
 -- I DONT Recommend you use this on Mobs. that could cause lag and freezing of the core.
 
 local npcid = {3100, 3101, 3102}; -- you can apply this to one or multiple npc's here.
 local delay = 1*30*1000 -- 30 seconds
-local cycles = 1 -- must be value 1 . any value other than 1 MAY cause events to stack and freeze the core.
-local allways = 0 -- constant fire after triggered = 0 // neutral after triggered fires once = 1
 
 local  ANN = {};
 
@@ -66,13 +62,15 @@ local statement, stated, linked, emote, spellid = table.unpack(ANN["Bender"][id]
 
 end
 
-local function TimedSay(eventId, delay, repeats, creature)
+local function TimedSay(eventId, duration, repeats, creature)
 
 Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
 
-	if(allways == 0)then -- checks switch for continuous 1
-		creature:RegisterEvent(TimedSay, delay, cycles)
+	if(#creature:GetPlayersInRange(10) >= 1)then -- check for continue if idle players are still in range.
+		creature:RegisterEvent(TimedSay, delay, 1)
 		ANN[creature:GetGUIDLow()] = {reset = 1,};
+	else
+		ANN[creature:GetGUIDLow()] = {reset = 2,};
 	end
 end
 
@@ -80,12 +78,17 @@ local function OnMotion(event, creature, unit)
 
 	if(unit:GetObjectType()=="Player")then
 
-		if(ANN[creature:GetGUIDLow()]==nil)then  
+		if((ANN[creature:GetGUIDLow()] == nil)or(ANN[creature:GetGUIDLow()].reset == (nil or 0)))then
 			ANN[creature:GetGUIDLow()] = {reset = 1,};
-		    creature:RegisterEvent(TimedSay, delay, cycles)
-		else
+			TimedSay(1, delay, 1, creature)
 		end
-	else
+		
+		if(ANN[creature:GetGUIDLow()].reset == 2)then
+ 			ANN[creature:GetGUIDLow()] = {reset = 1,};
+			creature:RemoveEvents()
+			creature:RegisterEvent(TimedSay, delay, 1)
+ 		end
+
 	end
 end
 
