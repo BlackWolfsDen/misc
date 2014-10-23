@@ -46,6 +46,7 @@ ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid}
 		};
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc.
+	ANN[creature:GetGUIDLow()] = {reset = 0,};
 	creature:RemoveEvents()
 end
 
