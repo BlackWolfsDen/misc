@@ -54,6 +54,7 @@ end
 local function Announce(id, creature)
 	
 local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(ANN["Bender"][id])
+local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 
 	if(emote ~= (nil or 0))then creature:Emote(emote)end -- check emote column for emote.
 
