@@ -68,10 +68,10 @@ local function TimedSay(eventId, duration, repeats, creature)
 Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
 
 	if(#creature:GetPlayersInRange(range) >= 1)then -- check for continue if idle players are still in range.
-		creature:RegisterEvent(TimedSay, delay, 1)
-		ANN[creature:GetGUIDLow()] = {reset = 1,};
+		creature:RegisterEvent(TimedSay, delay, 1) -- time to annoy those idle players
+		ANN[creature:GetGUIDLow()] = {reset = 1,}; -- set to 1 (Yes players are within preset range.)
 	else
-		ANN[creature:GetGUIDLow()] = {reset = 2,};
+		ANN[creature:GetGUIDLow()] = {reset = 2,}; -- set to 2  (No players are within preset range.)
 	end
 end
 
@@ -79,13 +79,13 @@ local function OnMotion(event, creature, unit)
 
 	if(unit:GetObjectType()=="Player")then
 
-		if((ANN[creature:GetGUIDLow()] == nil)or(ANN[creature:GetGUIDLow()].reset == (nil or 0)))then
-			ANN[creature:GetGUIDLow()] = {reset = 1,};
+		if((ANN[creature:GetGUIDLow()] == nil)or(ANN[creature:GetGUIDLow()].reset == (nil or 0)))then -- j/k flip flip fresh trigger 
+			ANN[creature:GetGUIDLow()] = {reset = 1,}; -- set j/k to 1
 			TimedSay(1, delay, 1, creature)
 		end
 		
-		if(ANN[creature:GetGUIDLow()].reset == 2)then
- 			ANN[creature:GetGUIDLow()] = {reset = 1,};
+		if(ANN[creature:GetGUIDLow()].reset == 2)then -- (NO players are within preset range.) but motion was triggered.
+ 			ANN[creature:GetGUIDLow()] = {reset = 1,}; -- set j/k back to position 1
 			creature:RemoveEvents()
 			creature:RegisterEvent(TimedSay, delay, 1)
  		end
