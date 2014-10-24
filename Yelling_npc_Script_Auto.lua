@@ -12,7 +12,7 @@
 
 local npcid = {3100, 3101, 3102}; -- you can apply this to one or multiple npc's here.
 local delay = 1*30*1000 -- 30 seconds
-local spawn_duration = 1*30*1000 -- 30 seconds
+local spawn_duration = 1*10*1000 -- 10 seconds
 local range = 15 -- the distance an idle player can be from the npc to trigger a continuous outburst.
 
 local  ANN = {};
@@ -28,7 +28,7 @@ local  ANN = {};
 -- spawn id :: id of what to spawn
 
 ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},},
-	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837, 1, 10000}}, -- say, Emote 1, spell 58837
+	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837, {1, 3100}}, -- say, Emote 1, spell 58837
 	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0, {0, 0}}, -- yell, Emote 14
 	[3] = {"Well,, were boned.", 0, 0, 1, 0, {0, 0}}, -- say, Emote 1
 	[4] = {"Hey sexy momma .. Wanna kill all humans..??.", 0, 0, 1, 58837, {0, 0}}, -- say, Emote 1, spell 58837
