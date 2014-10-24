@@ -63,7 +63,7 @@ local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.un
 
 	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
 
-	if(spawn_type ~= (nil or 0))then PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), creature:GetX(), creature:GetY(), creature:GetZ(), creature:GetO(), 1, spawn_duration); end
+	if(spawn_type ~= (nil or 0))then PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 1, spawn_duration); end
 
 end
 
