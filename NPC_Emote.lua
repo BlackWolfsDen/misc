@@ -24,6 +24,19 @@ local Reaction = math.random(1, Emotemax)
 	end
 end
 
+--[[
+-- if you want to apply this to a shit-ton of npc's then just add a column to you creature.tremplate called `emoter` witha value of 1 or 0
+-- 0 no 1 yes
+-- then un-rem this block and rem #NPCEMOTEIDS loop block plus the table
+
+local query = WorldDBQuery("SELECT `entry` FROM creature_template WHERE `emoter` = 1;")
+	if(query)then
+		repeat
+			RegisterCreatureEvent(query:GetUInt32(0), 8, NPC_EMOTE)
+		until not query:NextRow()
+	end
+]]--
+
 for a = 1,#NPCEMOTEIDS do
 	RegisterCreatureEvent(NPCEMOTEIDS[a], 8, NPC_EMOTE)
 end
