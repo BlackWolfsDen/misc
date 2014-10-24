@@ -69,7 +69,7 @@ local ctime = GetGameTime()
 		if(ctime >= PREM[player:GetAccountId()].spawned+respawn_timer)then -- checks current time with stored time of spawn plus the timer
 		
 			PREM[player:GetAccountId()].spawned = ctime -- stores the time of spawn
-			PerformIngameSpawn(1, PREM["SERVER"].vendor_id, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 0, despawn_timer, 1)
+			PerformIngameSpawn(1, PREM["SERVER"].vendor_id, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 0, despawn_timer, -1)
 
 		else
 			player:SendBroadcastMessage("you must wait to summon another vendor.")
