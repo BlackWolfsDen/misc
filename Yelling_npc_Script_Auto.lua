@@ -53,7 +53,7 @@ local statement, stated, linked, emote, spellid = table.unpack(ANN["Bender"][id]
 
 	if(emote ~= (nil or 0))then creature:Emote(emote)end -- check emote column for emote.
 
-	if(stated == 0)then creature:SendUnitSay(statement, 0); end-- check stated column if say.
+	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
 	if(stated == 1)then creature:SendUnitYell(statement, 0); end -- check stated column if yell.
 
