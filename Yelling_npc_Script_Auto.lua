@@ -55,8 +55,6 @@ local statement, stated, linked, emote, spellid = table.unpack(ANN["Bender"][id]
 
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
-	if(stated == 1)then creature:SendUnitYell(statement, 0); end -- check stated column if yell.
-
 	if(linked ~= (nil or 0))then Announce(linked, creature) end -- check the linked column for key id.
 
 	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
@@ -65,27 +63,31 @@ end
 
 local function TimedSay(eventId, duration, repeats, creature)
 
+local cGuid = creature:GetGUIDLow();
+
 Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
 
 	if(#creature:GetPlayersInRange(range) >= 1)then -- check for continue if idle players are still in range.
 		creature:RegisterEvent(TimedSay, delay, 1) -- time to annoy those idle players
-		ANN[creature:GetGUIDLow()] = {reset = 1,}; -- set to 1 (Yes players are within preset range.)
+		ANN[cGuid] = {reset = 1,}; -- set to 1 (Yes players are within preset range.)
 	else
-		ANN[creature:GetGUIDLow()] = {reset = 2,}; -- set to 2  (No players are within preset range.)
+		ANN[cGuid] = {reset = 2,}; -- set to 2  (No players are within preset range.)
 	end
 end
 
 local function OnMotion(event, creature, unit)
 
 	if(unit:GetObjectType()=="Player")then
-
-		if((ANN[creature:GetGUIDLow()] == nil)or(ANN[creature:GetGUIDLow()].reset == (nil or 0)))then -- j/k flip flip fresh trigger 
-			ANN[creature:GetGUIDLow()] = {reset = 1,}; -- set j/k to 1
+	
+		local cGuid = creature:GetGUIDLow();
+		
+		if((ANN[cGuid] == nil)or(ANN[cGuid].reset == (nil or 0)))then -- j/k flip flip fresh trigger 
+			ANN[cGuid] = {reset = 1,}; -- set j/k to 1
 			TimedSay(1, delay, 1, creature)
 		end
 		
-		if(ANN[creature:GetGUIDLow()].reset == 2)then -- (NO players are within preset range.) but motion was triggered.
- 			ANN[creature:GetGUIDLow()] = {reset = 1,}; -- set j/k back to position 1
+		if(ANN[cGuid].reset == 2)then -- (NO players are within preset range.) but motion was triggered.
+ 			ANN[cGuid] = {reset = 1,}; -- set j/k back to position 1
 			creature:RemoveEvents()
 			creature:RegisterEvent(TimedSay, delay, 1)
  		end
