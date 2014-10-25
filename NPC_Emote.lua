@@ -9,7 +9,7 @@ print("+-+-+-+-+-+")
 local Emotemax = 475
 local percent = 0.25
 local NPCEMOTEIDS = {}
-local NPCEMOTEIDS = {3100,3116,3127,10685};-- creature entry id's
+local NPCEMOTEIDS = {3100,3116,3127,10685};-- creature entry id's,, add whatever creature id's you want
 				
 local function NPC_EMOTE(event, creature, player, emoteid)
 
@@ -27,7 +27,7 @@ end
 --[[
 -- if you want to apply this to a shit-ton of npc's then just add a column to you creature.tremplate called `emoter` witha value of 1 or 0
 -- 0 no 1 yes
--- then un-rem this block and rem #NPCEMOTEIDS loop block plus the table
+-- then un-rem this block and rem #NPCEMOTEIDS loop block plus the table (lines 40,41,42,11,12)
 
 local query = WorldDBQuery("SELECT `entry` FROM creature_template WHERE `emoter` = 1;")
 	if(query)then
@@ -37,7 +37,7 @@ local query = WorldDBQuery("SELECT `entry` FROM creature_template WHERE `emoter`
 	end
 ]]--
 
-for a = 1,#NPCEMOTEIDS do
+for a = 1,#NPCEMOTEIDS do -- loop
 	RegisterCreatureEvent(NPCEMOTEIDS[a], 8, NPC_EMOTE)
 end
 
