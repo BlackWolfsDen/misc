@@ -28,7 +28,7 @@ local  ANN = {};
 -- spawn id :: id of what to spawn
 
 ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},},
-	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837, {1, 3100}}, -- say, Emote 1, spell 58837
+	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837, {1, 3100}}, -- say, Emote 1, cast spell 58837 on self, spawns npc `elder mottled boar`
 	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0, {0, 0}}, -- yell, Emote 14
 	[3] = {"Well,, were boned.", 0, 0, 1, 0, {0, 0}}, -- say, Emote 1
 	[4] = {"Hey sexy momma .. Wanna kill all humans..??.", 0, 0, 1, 58837, {0, 0}}, -- say, Emote 1, spell 58837
@@ -53,6 +53,8 @@ end
 
 local function Announce(id, creature)
 	
+local cGuid = creature:GetGUIDLow();
+
 local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(ANN["Bender"][id])
 local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 
@@ -66,18 +68,21 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 
 	if(spawn_type ~= (nil or 0))then PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0, spawn_duration, -1); end
 
+	ANN[cGuid] = {reset = 2,};
+
 end
 
 local function TimedSay(eventId, duration, repeats, creature)
 
 local cGuid = creature:GetGUIDLow();
 
-Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
+	if(#creature:GetPlayersInRange(range) >= 1)then -- (ANN[cGuid].reset == 1)and
 
-	if(#creature:GetPlayersInRange(range) >= 1)then -- check for continue if idle players are still in range.
-		creature:RegisterEvent(TimedSay, delay, 1) -- time to annoy those idle players
+		Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
+		local ctimer = creature:RegisterEvent(TimedSay, delay, 1) -- time to annoy those idle players
 		ANN[cGuid] = {reset = 1,}; -- set to 1 (Yes players are within preset range.)
 	else
+		Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
 		ANN[cGuid] = {reset = 2,}; -- set to 2  (No players are within preset range.)
 	end
 end
@@ -95,10 +100,8 @@ local function OnMotion(event, creature, unit)
 		
 		if(ANN[cGuid].reset == 2)then -- (NO players are within preset range.) but motion was triggered.
  			ANN[cGuid] = {reset = 1,}; -- set j/k back to position 1
-			creature:RemoveEvents()
-			creature:RegisterEvent(TimedSay, delay, 1)
+			local ctimer = creature:RegisterEvent(TimedSay, delay, 1)
  		end
-
 	end
 end
 
