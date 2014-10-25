@@ -28,8 +28,8 @@ local  ANN = {};
 -- spawn id :: id of what to spawn
 
 ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},},
-	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837, {1, 3100}}, -- say, Emote 1, cast spell 58837 on self, spawns npc `elder mottled boar`
-	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0, {0, 0}}, -- yell, Emote 14
+	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837, {1, 3100}}, -- say, Emote 1, cast spell 58837 on self, spawn npc 3100
+	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0, {2, 31}}, -- yell, Emote 14, spawn object 31,
 	[3] = {"Well,, were boned.", 0, 0, 1, 0, {0, 0}}, -- say, Emote 1
 	[4] = {"Hey sexy momma .. Wanna kill all humans..??.", 0, 0, 1, 58837, {0, 0}}, -- say, Emote 1, spell 58837
 	[5] = {"Goodbye losers whom I allways hated", 1, 0, 22, 0, {0, 0}}, -- yell, emote 22
