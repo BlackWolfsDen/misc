@@ -8,8 +8,9 @@ print("+-+-+-+-+-+")
 
 local Emotemax = 475
 local percent = 0.25
-local NPCEMOTEIDS = {}
-local NPCEMOTEIDS = {3100,3116,3127,10685};-- creature entry id's,, add whatever creature id's you want
+
+-- just add a column to you creature.tremplate // name = `emoter` // DataType = tinyint // length = 1 //unsigned checked // default = 0
+-- 0 no 1 yes
 				
 local function NPC_EMOTE(event, creature, player, emoteid)
 
@@ -24,22 +25,16 @@ local Reaction = math.random(1, Emotemax)
 	end
 end
 
---[[
--- if you want to apply this to a shit-ton of npc's then just add a column to you creature.tremplate called `emoter` witha value of 1 or 0
--- 0 no 1 yes
--- then un-rem this block and rem #NPCEMOTEIDS loop block plus the table (lines 40,41,42,11,12)
+local query = WorldDBQuery("SELECT `entry` FROM creature_template WHERE `emoter` = '1';")
 
-local query = WorldDBQuery("SELECT `entry` FROM creature_template WHERE `emoter` = 1;")
 	if(query)then
-		repeat
-			RegisterCreatureEvent(query:GetUInt32(0), 8, NPC_EMOTE)
-		until not query:NextRow()
-	end
-]]--
 
-for a = 1,#NPCEMOTEIDS do -- loop
-	RegisterCreatureEvent(NPCEMOTEIDS[a], 8, NPC_EMOTE)
-end
+		repeat
+
+			RegisterCreatureEvent(query:GetUInt32(0), 8, NPC_EMOTE)
+
+		until not query:NextRow(query:GetUInt32(0))
+	end
 
 math.randomseed(os.time());
 
