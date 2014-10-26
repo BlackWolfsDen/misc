@@ -11,10 +11,10 @@
 -- I DONT Recommend you use this on Mobs. that could cause lag and freezing of the core.
 
 local npcid = {3100, 3101, 3102}; -- you can apply this to one or multiple npc's here.
-local delay = 1*30*1000 -- 30 seconds
-local sub_timer = 1*2*1000 -- 2 seconds
-local spawn_duration = 1*10*1000 -- 10 seconds
 local range = 15 -- the distance an idle player can be from the npc to trigger a continuous outburst.
+local delay = 1*30*1000 -- 30 seconds time between announcements
+local sub_timer = 1*2*1000 -- 2 seconds time between linked announcements
+local spawn_duration = 1*10*1000 -- 10 seconds gob/npc despawn timer
 
 local  ANN = {};
 
