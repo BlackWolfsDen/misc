@@ -54,6 +54,10 @@ local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL eve
 	creature:RemoveEvents()
 end
 
+local function despawner(eventId, duration, repeats, gob)
+	gob:RemoveFromWorld()
+end
+
 local function sub_announce(eventId, duration, repeats, creature)
 
 local cGuid = creature:GetGUIDLow();
@@ -76,7 +80,8 @@ ANN[cGuid] = {reset = 2, link = 0};
 		if(spawn_type == 1)then 
 			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0, spawn_duration, -1) -- perfect
 		else
-			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 1, spawn_duration, -1)
+			local gob = PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 1, 0, -1)
+			gob:RegisterEvent(despawner, spawn_duration, 1)
 		end
 	else
 	end
@@ -100,9 +105,10 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 	if(spawn_type ~= (nil or 0))then 
 
 		if(spawn_type == 1)then 
-			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0, spawn_duration, -1) -- works perfect
+			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0, spawn_duration, -1) -- perfect
 		else
-			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 1, spawn_duration, -1) -- spawns but no despawn
+			local gob = PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 1, 0, -1)
+			gob:RegisterEvent(despawner, spawn_duration, 1)
 		end
 	else
 	end
