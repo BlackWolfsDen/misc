@@ -12,6 +12,7 @@
 
 local npcid = {3100, 3101, 3102}; -- you can apply this to one or multiple npc's here.
 local delay = 1*30*1000 -- 30 seconds
+local  sub_timer = 1*2*1000 -- 2 seconds
 local spawn_duration = 1*10*1000 -- 10 seconds
 local range = 15 -- the distance an idle player can be from the npc to trigger a continuous outburst.
 
@@ -44,11 +45,41 @@ ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid, {spawn type, s
 	[14] = {"Shut up baby , you love it", 0, 0, 1, 58837, {0, 0}}, -- uses spell
 	[100] = {"!!Let's go allready!!", 1, 0, 5, 0, {0, 0}}, -- linked from 8
 	[101] = {"In fact ,, forget the park.", 0, 0, 1, 0, {0, 0}}, -- linked from 12
+	[102] = {"cha cha cha cha...", 0, 103, 10, 0, {0, 0}}, -- linked from 10
+	[103] = {"Im bored now...", 0, 0, 1, 0, {0, 0}}, -- linked from 102
 		};
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc. this is here if the npc is attackable.
 	ANN[creature:GetGUIDLow()] = {reset = 0,};
 	creature:RemoveEvents()
+end
+
+local function sub_announce(eventId, duration, repeats, creature)
+
+local cGuid = creature:GetGUIDLow();
+
+local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["BENDER"].link])
+local spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["BENDER"].link][6])
+
+ANN[cGuid] = {reset = 2, link = 0};
+
+	if(emote ~= (nil or 0))then creature:Emote(emote); end -- check emote column for emote.
+
+	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
+
+	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["BENDER"] = {link = linked,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
+
+	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
+
+	if(spawn_type ~= (nil or 0))then 
+
+		if(spawn_type == 1)then 
+			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0, spawn_duration, -1) -- perfect
+		else
+			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 1, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 1, spawn_duration, -1)
+		end
+	else
+	end
 end
 
 local function Announce(id, creature)
@@ -62,7 +93,7 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
-	if(linked ~= (nil or 0))then Announce(linked, creature) end -- check the linked column for key id.
+	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["BENDER"] = {link = linked,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
 
 	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
 
