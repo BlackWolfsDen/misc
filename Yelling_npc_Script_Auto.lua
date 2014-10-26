@@ -51,11 +51,11 @@ ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid, {spawn type, s
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc. this is here if the npc is attackable.
 	ANN[creature:GetGUIDLow()] = {reset = 0,};
-	creature:RemoveEvents()
+	creature:RemoveEvents() -- even in death this will continue to make them say/yell. so force removal of events.
 end
 
 local function despawner(eventId, duration, repeats, gob)
-	gob:RemoveFromWorld()
+	gob:RemoveFromWorld() -- needed since go's dont work right for me with PerformInGameSpawn() `wont despawn by the set time`
 end
 
 local function sub_announce(eventId, duration, repeats, creature)
