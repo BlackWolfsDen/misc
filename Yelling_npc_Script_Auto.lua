@@ -80,7 +80,7 @@ ANN[cGuid] = {reset = 2, link = 0};
 		if(spawn_type == 1)then 
 			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0, spawn_duration, -1) -- perfect
 		else
-			local gob = PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 1, 0, -1)
+			local gob = PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0)
 			gob:RegisterEvent(despawner, spawn_duration, 1)
 		end
 	else
@@ -107,7 +107,7 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 		if(spawn_type == 1)then 
 			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0, spawn_duration, -1) -- perfect
 		else
-			local gob = PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 1, 0, -1)
+			local gob = PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0)
 			gob:RegisterEvent(despawner, spawn_duration, 1)
 		end
 	else
