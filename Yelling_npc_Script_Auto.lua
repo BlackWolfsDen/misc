@@ -45,8 +45,8 @@ ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid, {spawn type, s
 	[14] = {"Shut up baby , you love it", 0, 0, 1, 58837, {0, 0}}, -- uses spell
 	[100] = {"!!Let's go allready!!", 1, 0, 5, 0, {0, 0}}, -- linked from 8
 	[101] = {"In fact ,, forget the park.", 0, 0, 1, 0, {0, 0}}, -- linked from 12
-	[102] = {"cha cha cha cha...", 0, 103, 10, 0, {0, 0}}, -- linked from 10
-	[103] = {"Im bored now...", 0, 0, 1, 0, {0, 0}}, -- linked from 102
+	[102] = {".cha .. cha . cha .. cha...", 0, 103, 10, 0, {0, 0}}, -- linked from 10
+	[103] = {"..Ok Im bored now...", 0, 0, 1, 0, {0, 0}}, -- linked from 102
 		};
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc. this is here if the npc is attackable.
