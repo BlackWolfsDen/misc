@@ -10,6 +10,8 @@
 
 -- I DONT Recommend you use this on Mobs. that could cause lag and freezing of the core.
 
+math.randomseed(os.time());
+
 local npcid = {3100, 3101, 3102}; -- you can apply this to one or multiple npc's here.
 local range = 15 -- the distance an idle player can be from the npc to trigger a continuous outburst.
 local delay = 1*30*1000 -- 30 seconds time between announcements
@@ -71,7 +73,7 @@ ANN[cGuid] = {reset = 2, link = 0};
 
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
-	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["BENDER"] = {link = linked,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
+	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["BENDER"] = {link = linked,}; else ANN[cGuid] = {reset = 2,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
 
 	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
 
@@ -80,7 +82,7 @@ ANN[cGuid] = {reset = 2, link = 0};
 		if(spawn_type == 1)then 
 			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0, spawn_duration, -1) -- perfect
 		else
-			local gob = PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0)
+			local gob = PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0) -- perfect with stand alone removal timed function
 			gob:RegisterEvent(despawner, spawn_duration, 1)
 		end
 	else
@@ -98,7 +100,7 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
-	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["BENDER"] = {link = linked,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
+	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["BENDER"] = {link = linked,}; else ANN[cGuid] = {reset = 2,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
 
 	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
 
@@ -112,23 +114,20 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 		end
 	else
 	end
-
-	ANN[cGuid] = {reset = 2,};
-
 end
 
 local function TimedSay(eventId, duration, repeats, creature)
 
+local ctimer = nil
+
 local cGuid = creature:GetGUIDLow();
 
 	if(#creature:GetPlayersInRange(range) >= 1)then -- (ANN[cGuid].reset == 1)and
-
 		Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
-		local ctimer = creature:RegisterEvent(TimedSay, delay, 1) -- time to annoy those idle players
 		ANN[cGuid] = {reset = 1,}; -- set to 1 (Yes players are within preset range.)
+		local ctimer = creature:RegisterEvent(TimedSay, delay, 1) -- time to annoy those idle players
 	else
 		Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
-		ANN[cGuid] = {reset = 2,}; -- set to 2  (No players are within preset range.)
 	end
 end
 
@@ -155,5 +154,3 @@ for npc=1, #npcid do
 	RegisterCreatureEvent(npcid[npc], 27, OnMotion) 
 	RegisterCreatureEvent(npcid[npc], 4, Drop_Event_On_Death)
 end
-
-math.randomseed(os.time());
