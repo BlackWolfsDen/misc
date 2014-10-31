@@ -67,8 +67,8 @@ local function sub_announce(eventId, duration, repeats, creature)
 
 local cGuid = creature:GetGUIDLow();
 
-local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["Bender"].link])
-local spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["Bender"].link][6])
+local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["BENDER"].link])
+local spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["BENDER"].link][6])
 
 ANN[cGuid] = {reset = 2, link = 0};
 
@@ -76,7 +76,7 @@ ANN[cGuid] = {reset = 2, link = 0};
 
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
-	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["Bender"] = {link = linked,}; else ANN[cGuid] = {reset = 2,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
+	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["BENDER"] = {link = linked,}; else ANN[cGuid] = {reset = 2,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
 
 	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
 
@@ -103,7 +103,7 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
-	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["Bender"] = {link = linked,}; else ANN[cGuid] = {reset = 2,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
+	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["BENDER"] = {link = linked,}; else ANN[cGuid] = {reset = 2,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
 
 	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
 
