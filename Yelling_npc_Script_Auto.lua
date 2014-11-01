@@ -55,7 +55,6 @@ ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid, {spawn type, s
 		};
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc. this is here if the npc is attackable.
-	ANN[creature:GetGUIDLow()] = {reset = 0,};
 	creature:RemoveEvents() -- even in death this will continue to make them say/yell. so force removal of events.
 end
 
@@ -70,14 +69,19 @@ local cGuid = creature:GetGUIDLow();
 local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["BENDER"].link])
 local spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["BENDER"].link][6])
 
-ANN[cGuid] = {reset = 2, link = 0};
-
 	if(emote ~= (nil or 0))then creature:Emote(emote); end -- check emote column for emote.
 
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
-	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["BENDER"] = {link = linked,}; else ANN[cGuid] = {reset = 2,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
-
+	if(linked == (nil or 0))then
+		ANN[cGuid] = {gstime = os.time()}; 
+	end
+	
+	if(linked > 0)then 
+		local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) 
+		ANN["BENDER"] = {link = linked,};
+	end
+	
 	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
 
 	if(spawn_type ~= (nil or 0))then 
@@ -90,6 +94,7 @@ ANN[cGuid] = {reset = 2, link = 0};
 		end
 	else
 	end
+ANN[cGuid] = {gstime = os.time()}; 
 end
 
 local function Announce(id, creature)
@@ -103,7 +108,14 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
-	if(linked ~= (nil or 0))then local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) ANN["BENDER"] = {link = linked,}; else ANN[cGuid] = {reset = 2,}; end -- check the linked column for key id. -- time to annoy those idle players Announce(linked, creature)	
+	if(linked == (nil or 0))then
+		ANN[cGuid] = {gstime = os.time()}; 
+	end
+	
+	if(linked > 0)then 
+		local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) 
+		ANN["BENDER"] = {link = linked,};
+	end
 
 	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
 
@@ -117,18 +129,18 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 		end
 	else
 	end
+ANN[cGuid] = {gstime = os.time()}; 
 end
 
 local function TimedSay(eventId, duration, repeats, creature)
 
-local ctimer = nil
-
 local cGuid = creature:GetGUIDLow();
+ANN[cGuid] = {gstime = os.time()}; 
+local ctimer = nil
 
 	if(#creature:GetPlayersInRange(range) >= 1)then -- (ANN[cGuid].reset == 1)and
 		Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
-		ANN[cGuid] = {reset = 1,}; -- set to 1 (Yes players are within preset range.)
-		local ctimer = creature:RegisterEvent(TimedSay, delay, 1) -- time to annoy those idle players
+		local ctimer = creature:RegisterEvent(TimedSay, delay*1000, 1) -- time to annoy those idle players
 	else
 		Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
 	end
@@ -136,19 +148,19 @@ end
 
 local function OnMotion(event, creature, unit)
 
+local cGuid = creature:GetGUIDLow();
+
 	if(unit:GetObjectType()=="Player")then
 	
-		local cGuid = creature:GetGUIDLow();
-		
 		if((ANN[cGuid] == nil)or(ANN[cGuid].reset == (nil or 0)))then -- j/k flip flip fresh trigger 
-			ANN[cGuid] = {reset = 1,}; -- set j/k to 1
+			ANN[cGuid] = {reset = 1, gstime = os.time()}; 
 			TimedSay(1, delay, 1, creature)
 		end
 		
-		if(ANN[cGuid].reset == 2)then -- (NO players are within preset range.) but motion was triggered.
- 			ANN[cGuid] = {reset = 1,}; -- set j/k back to position 1
-			local ctimer = creature:RegisterEvent(TimedSay, delay, 1)
- 		end
+		if((os.time()) - (ANN[cGuid].gstime) >= delay)then 
+			ANN[cGuid] = {reset = 1, gstime = os.time()}; 
+			TimedSay(1, delay, 1, creature)
+		end 
 	end
 end
 
