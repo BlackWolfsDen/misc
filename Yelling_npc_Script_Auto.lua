@@ -65,7 +65,7 @@ ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},}
 		[104] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 105, 1, 0, {0, 0}}, -- yell, linked from 15, link to 105
 		[105] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 0, 1, 0, {0, 0}}, -- yell, linked from 104
 		[106] = {"With a 0.04 percent Nickel impurity.", 0, 0, 1, 0, {0, 0}}, -- yell, linked from 104
-		[107] = {"I'm made from recycled horseshoes.", 0, 0, 1, 0, {0, 0}}, -- 
+		[107] = {"It's because I'm made from recycled horseshoes.", 0, 0, 1, 0, {0, 0}}, -- 
 			}};
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc. this is here if the npc is attackable.
