@@ -47,12 +47,21 @@ ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},}
 		[13] = {"Do the Bender ,, Do the Bender ,, its your birthday ,, do the bender", 0, 0, 10, 0, {0, 0}},
 		[14] = {"Shut up baby , you love it", 0, 0, 1, 58837, {0, 0}}, -- uses spell
 		[15] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 104, 1, 0, {0, 0}}, -- Yell, link to 104
+		[16] = {"I'm Back Baby!.", 0, 0, 1, 0, {0, 0}}, -- 
+		[17] = {"!Shutup!. I know it.", 0, 0, 1, 0, {0, 0}}, -- 
+		[18] = {"!I'm 40% Titanium!.", 0, 106, 1, 0, {0, 0}}, -- 
+		[19] = {"!I'm 40% Zinc!.", 0, 106, 1, 0, {0, 0}}, -- 
+		[20] = {"!I'm 40% Dolemite!.", 0, 106, 1, 0, {0, 0}}, -- 
+		[21] = {"!I'm 30% iron!.", 0, 106, 1, 0, {0, 0}}, -- 
+		[22] = {"!Neat!.", 0, 0, 1, 0, {0, 0}}, -- 
+		[23] = {"Enough of this crap! I'm catching the next pimpmobile outta here! But before I go I have one thing to say ....", 0, 2, 1, 0, {0, 0}}, -- 
 		[100] = {"!!Let's go allready!!", 1, 0, 5, 0, {0, 0}}, -- linked from 8
 		[101] = {"In fact ,, forget the park.", 0, 0, 1, 0, {0, 0}}, -- linked from 12
 		[102] = {".cha .. cha . cha .. cha...", 0, 103, 10, 0, {0, 0}}, -- linked from 10
 		[103] = {"..Ok Im bored now...", 0, 0, 1, 0, {0, 0}}, -- linked from 102
 		[104] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 105, 1, 0, {0, 0}}, -- yell, linked from 15, link to 105
 		[105] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 0, 1, 0, {0, 0}}, -- yell, linked from 104
+		[106] = {"With a .04% Nickel impurity.", 0, 0, 1, 0, {0, 0}}, -- yell, linked from 104
 			}};
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc. this is here if the npc is attackable.
