@@ -49,11 +49,11 @@ ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},}
 		[15] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 104, 1, 0, {0, 0}}, -- Yell, link to 104
 		[16] = {"I'm Back Baby!.", 0, 0, 1, 0, {0, 0}}, -- 
 		[17] = {"!Shutup!. I know it.", 0, 0, 1, 0, {0, 0}}, -- 
-		[18] = {"!I'm 40% Titanium!.", 0, 106, 1, 0, {0, 0}}, -- 
-		[19] = {"!I'm 40% Zinc!.", 0, 106, 1, 0, {0, 0}}, -- 
-		[20] = {"!I'm 40% Dolemite!.", 0, 106, 1, 0, {0, 0}}, -- 
-		[21] = {"!I'm 30% iron!.", 0, 106, 1, 0, {0, 0}}, -- 
-		[22] = {"!I'm 40% luck!.", 0, 107, 1, 0, {0, 0}}, -- 
+		[18] = {"!I'm 40 percent Titanium!.", 0, 106, 1, 0, {0, 0}}, -- 
+		[19] = {"!I'm 40 percent Zinc!.", 0, 106, 1, 0, {0, 0}}, -- 
+		[20] = {"!I'm 40 percent Dolemite!.", 0, 106, 1, 0, {0, 0}}, -- 
+		[21] = {"!I'm 30 percent iron!.", 0, 106, 1, 0, {0, 0}}, -- 
+		[22] = {"!I'm 40 percent luck!.", 0, 107, 1, 0, {0, 0}}, -- 
 		[23] = {"!Neat!.", 0, 0, 1, 0, {0, 0}}, -- 
 		[24] = {"Enough of this crap! I'm catching the next pimpmobile outta here! But before I go I have one thing to say ....", 0, 2, 1, 0, {0, 0}}, -- 
 		[25] = {"I am Bender ,, Please insert gerder ..", 0, 0, 1, 0, {0, 0}}, -- 
@@ -64,7 +64,7 @@ ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},}
 		[103] = {"..Ok Im bored now...", 0, 0, 1, 0, {0, 0}}, -- linked from 102
 		[104] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 105, 1, 0, {0, 0}}, -- yell, linked from 15, link to 105
 		[105] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 0, 1, 0, {0, 0}}, -- yell, linked from 104
-		[106] = {"With a 0.04% Nickel impurity.", 0, 0, 1, 0, {0, 0}}, -- yell, linked from 104
+		[106] = {"With a 0.04 percent Nickel impurity.", 0, 0, 1, 0, {0, 0}}, -- yell, linked from 104
 		[107] = {"I'm made from recycled horseshoes.", 0, 0, 1, 0, {0, 0}}, -- 
 			}};
 		
