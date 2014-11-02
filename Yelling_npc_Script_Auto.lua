@@ -64,38 +64,6 @@ local function despawner(eventId, duration, repeats, gob)
 	gob:RemoveFromWorld() -- needed since go's dont work right for me with PerformInGameSpawn() `wont despawn by the set time`
 end
 
-local function sub_announce(eventId, duration, repeats, creature)
-
-local cGuid = creature:GetGUIDLow();
-local bundle = ANN["Bender"][ANN["BENDER"].link]
-
-local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(bundle)
-local spawn_type, spawn_id = table.unpack(bundle[6])
-
-	if(emote ~= (nil or 0))then creature:Emote(emote); end -- check emote column for emote.
-
-	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
-
-	if(linked > 0)then 
-		local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) 
-		ANN["BENDER"] = {link = linked,};
-	end
-	
-	if(spellid ~= (nil or 0))then creature:CastSpell(creature, spellid); end-- check the spellid column for spell id.
-
-	if(spawn_type ~= (nil or 0))then 
-
-		if(spawn_type == 1)then 
-			PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0, spawn_duration, -1) -- perfect
-		else
-			local gob = PerformIngameSpawn(spawn_type, spawn_id, creature:GetMapId(), 0, creature:GetX()+2, creature:GetY(), creature:GetZ(), creature:GetO(), 0) -- perfect with stand alone removal timed function
-			gob:RegisterEvent(despawner, spawn_duration, 1)
-		end
-	else
-	end
-ANN[cGuid] = {reset = 1, gstime = GetGameTime()}; 
-end
-
 local function Announce(id, creature)
 	
 local cGuid = creature:GetGUIDLow();
@@ -109,7 +77,7 @@ local spawn_type, spawn_id = table.unpack(bundle[6])
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
 	if(linked > 0)then 
-		local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) 
+		CreateLuaEvent(function() Announce(linked, creature); end, sub_timer, 1);
 		ANN["BENDER"] = {link = linked,};
 	end
 
