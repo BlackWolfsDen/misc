@@ -1,7 +1,7 @@
 -- <A_Work_in_Progress>
 -- request by Vitrex
 -- Script by Rochet2 of EmuDevs
--- Updated by slp13at420 of EmuDevs
+-- Updated by slp13at420 of EmuDevs -- Stricktly for learning purposes only --
 -- drunken slurred outbursts by `Bender the drunken annoying robot`
 
 -- The npc will start once a player is moving close enough to trigger event 27
