@@ -30,29 +30,30 @@ local  ANN = {};
 -- spawn type :: 0 none, 1 npc // 2 gob
 -- spawn id :: id of what to spawn
 
-ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},},
-	[1] = {"Well,, that was dumb.", 0, 0, 1, 58837, {1, 3100}}, -- say, Emote 1, cast spell 58837 on self, spawn npc 3100
-	[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0, {2, 31}}, -- yell, Emote 14, spawn object 31,
-	[3] = {"Well,, were boned.", 0, 0, 1, 0, {0, 0}}, -- say, Emote 1
-	[4] = {"Hey sexy momma .. Wanna kill all humans..??.", 0, 0, 1, 58837, {0, 0}}, -- say, Emote 1, spell 58837
-	[5] = {"Goodbye losers whom I allways hated", 1, 0, 22, 0, {0, 0}}, -- yell, emote 22
-	[6] = {"!Shut the hell up!", 1, 0, 5, 0, {0, 0}}, -- yell, emote 5
-	[7] = {"Would you kindly shut your noise hole?", 0, 0, 1, 0, {0, 0}}, -- say, emote 1
-	[8] = {"I'm gonna go build my own theme park.. with blackjack and hookerz.", 0, 101, 1, 0, {0, 0}}, -- say, emote 1, links to 101
-	[9] = {"Who are you and why should i care?", 0, 0, 25, 0, {0, 0}}, -- say, emote 25
-	[10] = {"!Shut up and Pay attention To Me !!.. !!BENDER!!", 1, 102, 5, 0, {0, 0}}, -- yell , emote 5
-	[11] = {"Hasta La Vista , Meat bag.", 0, 0, 1, 0, {0, 0}},
-	[12] = {"Awww, heres a little song i wrote to cheer you up. Its called ", 0, 100, 1, 0, {0, 0}}, -- links to 100
-	[13] = {"Do the Bender ,, Do the Bender ,, its your birthday ,, do the bender", 0, 0, 10, 0, {0, 0}},
-	[14] = {"Shut up baby , you love it", 0, 0, 1, 58837, {0, 0}}, -- uses spell
-	[15] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 104, 1, 0, {0, 0}}, -- Yell, link to 104
-	[100] = {"!!Let's go allready!!", 1, 0, 5, 0, {0, 0}}, -- linked from 8
-	[101] = {"In fact ,, forget the park.", 0, 0, 1, 0, {0, 0}}, -- linked from 12
-	[102] = {".cha .. cha . cha .. cha...", 0, 103, 10, 0, {0, 0}}, -- linked from 10
-	[103] = {"..Ok Im bored now...", 0, 0, 1, 0, {0, 0}}, -- linked from 102
-	[104] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 105, 1, 0, {0, 0}}, -- yell, linked from 15, link to 105
-	[105] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 0, 1, 0, {0, 0}}, -- yell, linked from 104
-		};
+ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},},
+	["Bender"] = {
+		[1] = {"Well,, that was dumb.", 0, 0, 1, 58837, {1, 3100}}, -- say, Emote 1, cast spell 58837 on self, spawn npc 3100
+		[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0, {2, 31}}, -- yell, Emote 14, spawn object 31,
+		[3] = {"Well,, were boned.", 0, 0, 1, 0, {0, 0}}, -- say, Emote 1
+		[4] = {"Hey sexy momma .. Wanna kill all humans..??.", 0, 0, 1, 58837, {0, 0}}, -- say, Emote 1, spell 58837
+		[5] = {"Goodbye losers whom I allways hated", 1, 0, 22, 0, {0, 0}}, -- yell, emote 22
+		[6] = {"!Shut the hell up!", 1, 0, 5, 0, {0, 0}}, -- yell, emote 5
+		[7] = {"Would you kindly shut your noise hole?", 0, 0, 1, 0, {0, 0}}, -- say, emote 1
+		[8] = {"I'm gonna go build my own theme park.. with blackjack and hookerz.", 0, 101, 1, 0, {0, 0}}, -- say, emote 1, links to 101
+		[9] = {"Who are you and why should i care?", 0, 0, 25, 0, {0, 0}}, -- say, emote 25
+		[10] = {"!Shut up and Pay attention To Me !!.. !!BENDER!!", 1, 102, 5, 0, {0, 0}}, -- yell , emote 5
+		[11] = {"Hasta La Vista , Meat bag.", 0, 0, 1, 0, {0, 0}},
+		[12] = {"Awww, heres a little song i wrote to cheer you up. Its called ", 0, 100, 1, 0, {0, 0}}, -- links to 100
+		[13] = {"Do the Bender ,, Do the Bender ,, its your birthday ,, do the bender", 0, 0, 10, 0, {0, 0}},
+		[14] = {"Shut up baby , you love it", 0, 0, 1, 58837, {0, 0}}, -- uses spell
+		[15] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 104, 1, 0, {0, 0}}, -- Yell, link to 104
+		[100] = {"!!Let's go allready!!", 1, 0, 5, 0, {0, 0}}, -- linked from 8
+		[101] = {"In fact ,, forget the park.", 0, 0, 1, 0, {0, 0}}, -- linked from 12
+		[102] = {".cha .. cha . cha .. cha...", 0, 103, 10, 0, {0, 0}}, -- linked from 10
+		[103] = {"..Ok Im bored now...", 0, 0, 1, 0, {0, 0}}, -- linked from 102
+		[104] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 105, 1, 0, {0, 0}}, -- yell, linked from 15, link to 105
+		[105] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 0, 1, 0, {0, 0}}, -- yell, linked from 104
+			}};
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc. this is here if the npc is attackable.
 	creature:RemoveEvents() -- even in death this will continue to make them say/yell. so force removal of events.
