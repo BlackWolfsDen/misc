@@ -64,7 +64,7 @@ ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},}
 		[103] = {"..Ok Im bored now...", 0, 0, 1, 0, {0, 0}}, -- linked from 102
 		[104] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 105, 1, 0, {0, 0}}, -- yell, linked from 15, link to 105
 		[105] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 0, 1, 0, {0, 0}}, -- yell, linked from 104
-		[106] = {"With a .04% Nickel impurity.", 0, 0, 1, 0, {0, 0}}, -- yell, linked from 104
+		[106] = {"With a 0.04% Nickel impurity.", 0, 0, 1, 0, {0, 0}}, -- yell, linked from 104
 		[107] = {"I'm made from recycled horseshoes.", 0, 0, 1, 0, {0, 0}}, -- 
 			}};
 		
