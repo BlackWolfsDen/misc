@@ -56,6 +56,7 @@ ANN["Bender"] = {-- {"Statement", stated, linked, emote, spellid, {spawn type, s
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc. this is here if the npc is attackable.
 	creature:RemoveEvents() -- even in death this will continue to make them say/yell. so force removal of events.
+	ANN[cGuid] = {reset = 0, gstime = GetGameTime()}; 
 end
 
 local function despawner(eventId, duration, repeats, gob)
@@ -65,18 +66,15 @@ end
 local function sub_announce(eventId, duration, repeats, creature)
 
 local cGuid = creature:GetGUIDLow();
+local bundle = ANN["Bender"][ANN["BENDER"].link]
 
-local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["BENDER"].link])
-local spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["BENDER"].link][6])
+local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(bundle)
+local spawn_type, spawn_id = table.unpack(bundle[6])
 
 	if(emote ~= (nil or 0))then creature:Emote(emote); end -- check emote column for emote.
 
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
-	if(linked == (nil or 0))then
-		ANN[cGuid] = {gstime = os.time()}; 
-	end
-	
 	if(linked > 0)then 
 		local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) 
 		ANN["BENDER"] = {link = linked,};
@@ -94,24 +92,21 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][ANN["BENDER"].link][6])
 		end
 	else
 	end
-ANN[cGuid] = {gstime = os.time()}; 
+ANN[cGuid] = {reset = 1, gstime = GetGameTime()}; 
 end
 
 local function Announce(id, creature)
 	
 local cGuid = creature:GetGUIDLow();
+local bundle = ANN["Bender"][id]
 
-local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(ANN["Bender"][id])
-local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
+local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(bundle)
+local spawn_type, spawn_id = table.unpack(bundle[6])
 
 	if(emote ~= (nil or 0))then creature:Emote(emote)end -- check emote column for emote.
 
 	if(stated == 0)then creature:SendUnitSay(statement, 0) else creature:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
-	if(linked == (nil or 0))then
-		ANN[cGuid] = {gstime = os.time()}; 
-	end
-	
 	if(linked > 0)then 
 		local ctimer = creature:RegisterEvent(sub_announce, sub_timer, 1) 
 		ANN["BENDER"] = {link = linked,};
@@ -129,20 +124,18 @@ local spawn_type, spawn_id = table.unpack(ANN["Bender"][id][6])
 		end
 	else
 	end
-ANN[cGuid] = {gstime = os.time()}; 
+ANN[cGuid] = {reset = 1, gstime = GetGameTime()}; 
 end
 
 local function TimedSay(eventId, duration, repeats, creature)
 
 local cGuid = creature:GetGUIDLow();
-ANN[cGuid] = {gstime = os.time()}; 
 local ctimer = nil
 
+Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
+
 	if(#creature:GetPlayersInRange(range) >= 1)then -- (ANN[cGuid].reset == 1)and
-		Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
-		local ctimer = creature:RegisterEvent(TimedSay, delay*1000, 1) -- time to annoy those idle players
-	else
-		Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
+		local ctimer = creature:RegisterEvent(TimedSay, delay, 1) -- time to annoy those idle players
 	end
 end
 
@@ -153,14 +146,15 @@ local cGuid = creature:GetGUIDLow();
 	if(unit:GetObjectType()=="Player")then
 	
 		if((ANN[cGuid] == nil)or(ANN[cGuid].reset == (nil or 0)))then -- j/k flip flip fresh trigger 
-			ANN[cGuid] = {reset = 1, gstime = os.time()}; 
+			ANN[cGuid] = {reset = 1, gstime = GetGameTime()}; 
 			TimedSay(1, delay, 1, creature)
+		else
+
+			if(((GetGameTime() - ANN[cGuid].gstime)*1000) > (delay))then
+				ANN[cGuid] = {reset = 1, gstime = GetGameTime()}; 
+				TimedSay(1, delay, 1, creature)
+			end
 		end
-		
-		if((os.time()) - (ANN[cGuid].gstime) >= delay)then 
-			ANN[cGuid] = {reset = 1, gstime = os.time()}; 
-			TimedSay(1, delay, 1, creature)
-		end 
 	end
 end
 
