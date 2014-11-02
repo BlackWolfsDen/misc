@@ -61,6 +61,8 @@ ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},}
 		[27] = {"I'll go go build my own lunar lander, with blackjack and hookerz.", 0, 101, 1, 0, {0, 0}}, -- say, emote 1, links to 101
 		[28] = {"Bender Bender Bender.", 0, 0, 1, 0, {0, 0}}, -- 
 		[29] = {"Hi yawl buddy, it's me, Bender.", 0, 0, 1, 0, {0, 0}}, -- 
+		[30] = {"!HEY! ", 1, 108, 1, 0, {0, 0}}, -- 
+		[31] = {"!HEY!", 1, 110, 1, 0, {0, 0}}, -- 
 		[100] = {"!!Let's go allready!!", 1, 0, 5, 0, {0, 0}}, -- linked from 8
 		[101] = {"In fact ,, forget the park.", 0, 0, 1, 0, {0, 0}}, -- linked from 12
 		[102] = {".cha .. cha . cha .. cha...", 0, 103, 10, 0, {0, 0}}, -- linked from 10
@@ -69,6 +71,10 @@ ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},}
 		[105] = {"!! REEEEE-MEMM-BERRRR MEEEEEE !!..", 1, 0, 1, 0, {0, 0}}, -- yell, linked from 104
 		[106] = {"With a 0.04 percent Nickel impurity.", 0, 0, 1, 0, {0, 0}}, -- yell, linked from 104
 		[107] = {"It's because I'm made from recycled horseshoes.", 0, 0, 1, 0, {0, 0}}, -- 
+		[108] = {"What kind of party is this.?", 0, 109, 1, 0, {0, 0}}, -- 
+		[109] = {"!! There's NO booze and only one hooker !!", 1, 0, 1, 0, {0, 0}}, -- 
+		[110] = {"Do I preach to you when you're lying in the gutter.?", 0, 111, 1, 0, {0, 0}}, -- 
+		[111] = {"!! NO !!", 1, 0, 1, 0, {0, 0}}, -- 
 			}};
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc. this is here if the npc is attackable.
