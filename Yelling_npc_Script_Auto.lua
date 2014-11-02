@@ -129,7 +129,6 @@ end
 
 local function TimedSay(eventId, duration, repeats, creature)
 
-local cGuid = creature:GetGUIDLow();
 local ctimer = nil
 
 Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
