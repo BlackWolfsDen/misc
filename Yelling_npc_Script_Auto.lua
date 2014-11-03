@@ -90,8 +90,8 @@ end
 
 local function Announce(idX, creatureX, repeats, creatureY)
 
-local creatureZ = nil;
-local id = nil;
+local creatureZ = nil; -- they gives errors if i dont define them as a local first
+local id = nil; -- they gives errors if i dont define them as a local first
 
 	if(creatureX)then creatureZ = creatureX; id = idX; end
 
