@@ -13,10 +13,12 @@
 math.randomseed(os.time());
 
 local npcid = {3100, 3101, 3102}; -- you can apply this to one or multiple npc's here.
-local range = 15 -- the distance an idle player can be from the npc to trigger a continuous outburst.
-local delay = 1*30*1000 -- 30 seconds time between announcements
-local sub_timer = 1*2*1000 -- 2 seconds time between linked announcements
-local spawn_duration = 1*10*1000 -- 10 seconds gob/npc despawn timer
+local range = 15; -- the distance an idle player can be from the npc to trigger a continuous outburst.
+local delay = 1*30*1000; -- 30 seconds time between announcements
+local sub_timer = 1*2*1000; -- 2 seconds time between linked announcements
+local spawn_duration = 1*10*1000; -- 10 seconds gob/npc despawn timer
+local  cGuid = nil;
+local ctimer = nil;
 
 local  ANN = {};
 
@@ -79,7 +81,7 @@ ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},}
 			}};
 		
 local function Drop_Event_On_Death(eventid, creature, killer) -- removes ALL events upon death of npc. this is here if the npc is attackable.
-	local cGuid = creatureZ:GetGUIDLow();
+	cGuid = creatureZ:GetGUIDLow();
 	creature:RemoveEvents() -- even in death this will continue to make them say/yell. so force removal of events.
 	ANN[cGuid] = {reset = 0, gstime = GetGameTime()}; 
 end
@@ -97,7 +99,7 @@ local id = nil; -- they wont keep the value stored to them and become nil .... w
 
 	if(creatureY)then creatureZ = creatureY; id = ANN["BENDER"].link; end	
 
-local cGuid = creatureZ:GetGUIDLow();
+cGuid = creatureZ:GetGUIDLow();
 local bundle = ANN["Bender"][id]
 
 local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(bundle)
@@ -112,7 +114,7 @@ local spawn_type, spawn_id = table.unpack(bundle[6])
 	end
 
 	if(linked > 0)then
-		local ctimer = creatureZ:RegisterEvent(Announce, sub_timer, 1) -- time to start linking
+		ctimer = creatureZ:RegisterEvent(Announce, sub_timer, 1) -- time to start linking
 		ANN["BENDER"] = {link = linked,};
 	end
 
@@ -133,7 +135,7 @@ end
 
 local function TimedSay(eventId, duration, repeats, creature)
 
-local ctimer = nil
+ctimer = nil
 
 Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
 
@@ -144,7 +146,7 @@ end
 
 local function OnMotion(event, creature, unit)
 
-local cGuid = creature:GetGUIDLow();
+cGuid = creature:GetGUIDLow();
 
 	if(unit:GetObjectType()=="Player")then
 	
