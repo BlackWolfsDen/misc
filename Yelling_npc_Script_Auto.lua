@@ -91,7 +91,7 @@ end
 local function Announce(idX, creatureX, repeats, creatureY)
 
 local creatureZ = nil; -- they gives errors if i dont define them as a local first
-local id = nil; -- they gives errors if i dont define them as a local first
+local id = nil; -- they wont keep the value stored to them and become nil .... wierd .. but i got it to work smooth this way :D
 
 	if(creatureX)then creatureZ = creatureX; id = idX; end
 
@@ -138,7 +138,7 @@ local ctimer = nil
 Announce(math.random(#ANN["Bender"]), creature) -- sends the data to Announce function
 
 	if(#creature:GetPlayersInRange(range) >= 1)then -- (ANN[cGuid].reset == 1)and
-		local ctimer = creature:RegisterEvent(TimedSay, delay, 1) -- time to annoy those idle players
+		ctimer = creature:RegisterEvent(TimedSay, delay, 1) -- time to annoy those idle players
 	end
 end
 
