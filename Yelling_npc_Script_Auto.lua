@@ -107,7 +107,7 @@ cGuid = creatureZ:GetGUIDLow();
 local bundle = ANN["Bender"][id]
 
 	if #bundle ~= reqData then -- verify table has proper amount of entries. 
-		print("Yelling_npc Err Table Key:"..id) -- it will inform of an error 
+		print("Yelling_npc Err Table Key: "..id) -- it will inform of an error 
 		return; -- but script can be triggered again.
 	end
 
