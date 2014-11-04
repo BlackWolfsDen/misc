@@ -32,6 +32,8 @@ local  ANN = {};
 -- spawn type :: 0 none, 1 npc // 2 gob
 -- spawn id :: id of what to spawn
 
+local reqData = 6
+
 ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},},
 	["BENDER"] = {},
 	["Bender"] = {
@@ -103,6 +105,11 @@ local id = nil; -- they wont keep the value stored to them and become nil .... w
 cGuid = creatureZ:GetGUIDLow();
 
 local bundle = ANN["Bender"][id]
+
+	if #bundle ~= reqData then -- verify table is full(no nil values)
+		print("Yelling_npc Err Table Key:"..id)
+		return;
+	end
 
 local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(bundle)
 local spawn_type, spawn_id = table.unpack(bundle[6])
