@@ -24,13 +24,14 @@ local  ANN = {};
 
 -- {Statement, stated, linked, emote, spellid,{spawn type, spawn id},},
 -- statement :: in quotes "blah blah" 
--- stated :: say = 0 // yell = 1 
+-- stated :: // say = 0 // yell = 1 //
 -- linked :: table key id if your using multiple statements  for one announcement i.e.(yell THEN say)
--- emote :: talk = 1 // yell = 5// Question = 6 // Dance = 10 // Rude = 14 // shout = 22 // 
+-- emote :: // talk = 1 // yell = 5// Question = 6 // Dance = 10 // Rude = 14 // shout = 22 // 
+-- 	http://collab.kpsn.org/display/tc/Emote
 -- spellid :: spell id
--- http://collab.kpsn.org/display/tc/Emote
--- spawn type :: 0 none, 1 npc // 2 gob
--- spawn id :: id of what to spawn
+-- spawn :: {type, id}
+-- 	spawn type :: // 0 none // 1 npc // 2 gob //
+-- 	spawn id :: id of what npc/gob to spawn
 
 local reqData = 6
 
