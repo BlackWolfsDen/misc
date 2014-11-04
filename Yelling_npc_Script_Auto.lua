@@ -97,7 +97,7 @@ local id = nil; -- they wont keep the value stored to them and become nil .... w
 
 	if(creatureX)then creatureZ = creatureX; id = idX; end
 
-	if(creatureY)then creatureZ = creatureY; id = ANN["BENDER"].link; end	
+	if(creatureY)then creatureZ = creatureY; id = ANN["BENDER"][cGuid].link; end	
 
 cGuid = creatureZ:GetGUIDLow();
 local bundle = ANN["Bender"][id]
@@ -110,12 +110,12 @@ local spawn_type, spawn_id = table.unpack(bundle[6])
 	if(stated == 0)then creatureZ:SendUnitSay(statement, 0) else creatureZ:SendUnitYell(statement, 0); end -- check stated column if say else yell.
 
 	if(linked ==(nil or 0))then
-		ANN["BENDER"] = {link = nil,};
+		ANN["BENDER"][cGuid] = {link = nil,};
 	end
 
 	if(linked > 0)then
 		ctimer = creatureZ:RegisterEvent(Announce, sub_timer, 1) -- time to start linking
-		ANN["BENDER"] = {link = linked,};
+		ANN["BENDER"][cGuid] = {link = linked,};
 	end
 
 	if(spellid ~= (nil or 0))then creatureZ:CastSpell(creature, spellid); end-- check the spellid column for spell id.
