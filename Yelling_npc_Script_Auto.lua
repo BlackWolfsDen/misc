@@ -33,6 +33,7 @@ local  ANN = {};
 -- spawn id :: id of what to spawn
 
 ANN = {-- {"Statement", stated, linked, emote, spellid, {spawn type, spawn id},},
+	["BENDER"] = {},
 	["Bender"] = {
 		[1] = {"Well,, that was dumb.", 0, 0, 1, 58837, {1, 3100}}, -- say, Emote 1, cast spell 58837 on self, spawn npc 3100
 		[2] = {"!Bite my shiney metal ass!", 1, 0, 14, 0, {2, 31}}, -- yell, Emote 14, spawn object 31,
@@ -97,9 +98,10 @@ local id = nil; -- they wont keep the value stored to them and become nil .... w
 
 	if(creatureX)then creatureZ = creatureX; id = idX; end
 
-	if(creatureY)then creatureZ = creatureY; id = ANN["BENDER"][cGuid].link; end	
+	if(creatureY)then creatureZ = creatureY; id = ANN["BENDER"][creatureZ:GetGUIDLow()].link; end	
 
 cGuid = creatureZ:GetGUIDLow();
+
 local bundle = ANN["Bender"][id]
 
 local statement, stated, linked, emote, spellid, spawn_type, spawn_id = table.unpack(bundle)
