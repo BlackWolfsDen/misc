@@ -9,13 +9,15 @@ local T = {
 
 
 local function Hello(event, player)
-	player:GossipClearMenu();
-	
-		for k, v in ipairs(T["Main"]) do
+
+player:GossipClearMenu();
+
+	for k, v in ipairs(T["Main"]) do
 
     		player:GossipMenuAddItem(0, v[2], 0, k)
-		end
-  player:GossipSendMenu(1, player, 100)
+	end
+	
+player:GossipSendMenu(1, player, 100)
 end
 
 local function OnSelect(event, player, _, sernder, intid, code)
