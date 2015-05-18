@@ -1,3 +1,8 @@
+-- script by Unknown96
+-- updated to a working Vendor menu
+-- this doesnt use World Objects like npc's or objects
+-- it uses chat commands.
+
 local command = "#menu";
 
 local T = {
