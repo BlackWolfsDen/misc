@@ -1,5 +1,5 @@
 -- script by Unknown96
--- updated to a working Vendor menu
+-- updated to a working Vendor menu by slp13at420
 -- this doesnt use World Objects like npc's or objects
 -- it uses chat commands.
 
