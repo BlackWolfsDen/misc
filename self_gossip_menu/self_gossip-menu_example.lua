@@ -8,7 +8,7 @@ local command = "#menu";
 local T = {
 	["Main"] = {
 		{0, "Hello There", 0, 1},
-		{0, "[Exit Menu]", 0, 2}  
+		{0, "[Exit Menu]", 0, 2},
 	},
 };
 
