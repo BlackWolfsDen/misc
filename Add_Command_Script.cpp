@@ -1,11 +1,3 @@
-/*
- * Grumbo`z Guild Warz
- * C++ version for Trinity Core 3.3.5a
- * Created by slp13at420 of EmuDevs.com
- * NOT for Public release...!
- * By Private request of the creator only.
- */
-
 #include "ScriptPCH.h"
 #include "Chat.h"
 #include <cstring>
