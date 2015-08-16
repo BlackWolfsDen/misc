@@ -13,6 +13,9 @@ end
 
 local function Responce(event, player, creature, sender, intid, code)
 
+local pName = player:GetName();
+local cName = creature:GetName();
+
 	if(intid == 101)then -- used to return to the main screen.. catch-22
 		
 		Hello(1, player, creature)
@@ -21,7 +24,7 @@ local function Responce(event, player, creature, sender, intid, code)
 	if(intid==102)then
 
 		player:GossipClearMenu();
-		player:GossipMenuAddItem(5,"I am "..creature:GetName(), 0, 101);
+		player:GossipMenuAddItem(5,"I am "..cName, 0, 101);
 		player:GossipMenuAddItem(5, "<- Back", 0, 101);
 		player:GossipMenuAddItem(5,"GoodBye!", 0, 137);
 	 	player:GossipSendMenu(10, creature);
@@ -30,7 +33,7 @@ local function Responce(event, player, creature, sender, intid, code)
 	if(intid==103)then
 
 		player:GossipClearMenu();
-		player:GossipMenuAddItem(5,"You are "..player:GetName(), 0, 101);
+		player:GossipMenuAddItem(5,"You are "..pName, 0, 101);
 		player:GossipMenuAddItem(5, "<- Back", 0, 101);
 		player:GossipMenuAddItem(5,"GoodBye!", 0, 137);
 	 	player:GossipSendMenu(10, creature);
@@ -39,8 +42,8 @@ local function Responce(event, player, creature, sender, intid, code)
 	if(intid==107)then
 
 		player:GossipClearMenu();
-		player:GossipMenuAddItem(5,"I am "..creature:GetName(), 0, 101);
-		player:GossipMenuAddItem(5,"You are "..player:GetName(), 0, 101);
+		player:GossipMenuAddItem(5,"I am "..cName, 0, 101);
+		player:GossipMenuAddItem(5,"You are "..pName, 0, 101);
 		player:GossipMenuAddItem(5, "<- Back", 0, 101);
 		player:GossipMenuAddItem(5,"GoodBye!", 0, 137);
 	 	player:GossipSendMenu(10, creature);
