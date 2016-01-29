@@ -1,5 +1,5 @@
-print("+-+-+-+-+-+-+-+-+-+-+-+")
-print("+CheaterStone Loading +")
+print("+-+-+-+-+-+-+-+-+-+-+-+-+")
+print("+ Cheater Stone Loading +")
 local itemid = nil -- 400582 -- nil
 local npcid = nil -- change to your npc id 
 
@@ -160,7 +160,7 @@ local function CheaterStoneOnSelect(event, player, unit, sender, intid, code)
 	end			
 end
 
-print("+-+-+-+-+-+-+-+-+-+-+-+")
+print("+-+-+-+-+-+-+-+-+-+-+-+-+")
 
 if(itemid ~= nil)then
 	RegisterItemGossipEvent(itemid, 1, CheaterStoneOnHello)
@@ -178,6 +178,6 @@ else
 	print("+   Creature nil.     +")
 end
 
-print("+-+-+-+-+-+-+-+-+-+-+-+")
-print("+ CheaterStone Loaded +")
-print("+-+-+-+-+-+-+-+-+-+-+-+")
+print("+--++-+-+-+-+-+-+-+-+-+-+")
+print("+ Cheater Stone  Loaded +")
+print("+-+-+-+-+-+-+-+-+-+-+-+-+")
