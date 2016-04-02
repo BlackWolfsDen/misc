@@ -1,34 +1,34 @@
 // By slp13at420 of EmuDevs.com
 
-#include "Player.h"
-#include "PlayerAI\PlayerAI.h"
 #include "AccountMgr.h"
+#include "chat.h"
+#include "Player.h"
 #include "ScriptMgr.h"
 #include "WorldSession.h"
 
+uint32 reward_value = 2;
+
 std::string DB_COLUMN = "reward_count"; // this is the name of the element in auth.account you added to store this value. use default '0' so it wont need another block for OnAccountCreation.
+
 std::unordered_map<uint32, uint32>CKR;
 
-void StoreCredit(uint32 id, uint32 count)
+class KillCreatureCredit : public PlayerScript
 {
-	LoginDatabase.PExecute("UPDATE account SET `%s` = '%u' WHERE `id` = '%u';", DB_COLUMN.c_str(), count, id);
-};
+public: KillCreatureCredit() : PlayerScript("KillCreatureCredit"){ }
 
-class KillCreatureCredit_Account_Events : public AccountScript
-{
-public: KillCreatureCredit_Account_Events() : AccountScript("KillCreatureCredit_Account_Events"){ };
-
-	virtual void OnAccountLogout(uint32 accountId)
-	{
-		WorldDatabase.PExecute("REPLACE INTO account SET `%s`='%u';", DB_COLUMN.c_str(), CKR[accountId]);
-
-		CKR.erase(accountId);
-	};
-
-	virtual void OnAccountLogin(uint32 accountId)
-	{
-		if (accountId > 0)
+		virtual void OnLogout(Player* player)
 		{
+			uint32 accountId = player->GetSession()->GetAccountId();
+
+			LoginDatabase.PExecute("UPDATE `account` SET `%s` = '%u' WHERE `id` = '%u';", DB_COLUMN.c_str(), CKR[accountId], accountId);
+
+			CKR.erase(accountId);
+		};
+
+		virtual void OnLogin(Player* player, bool /*firstLogin*/)
+		{
+			uint32 accountId = player->GetSession()->GetAccountId();
+			
 			QueryResult CKRPlayerQery = LoginDatabase.PQuery("SELECT `%s` FROM `account` WHERE `id` = '%u';", DB_COLUMN.c_str(), accountId);
 
 			if (CKRPlayerQery)
@@ -42,22 +42,19 @@ public: KillCreatureCredit_Account_Events() : AccountScript("KillCreatureCredit_
 
 				} while (CKRPlayerQery->NextRow());
 			}
-		}
-	}
-};
+		};
+		
+		void OnCreatureKill(Player* player, Creature* killed) override
+		{
+			uint32 accountId = player->GetSession()->GetAccountId();
 
-class KillCreatureCredit : public PlayerScript
-{
-public: KillCreatureCredit() : PlayerScript("KillCreatureCredit"){ }
+			CKR[accountId] = CKR[accountId] + reward_value;
 
-	void OnCreatureKill(Player* killer, Creature* killed)
-	{
-		StoreCredit(killer->GetSession()->GetAccountId(), 2);
-	}
+			ChatHandler(player->GetSession()).PSendSysMessage("You earned %u rewards for a total of %u points.", reward_value, CKR[accountId]);
+		};
 };
 
 void AddSC_KillCreatureRewarder()
 {
-	new KillCreatureCredit_Account_Events;
 	new KillCreatureCredit;
 }
