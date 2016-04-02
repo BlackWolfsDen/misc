@@ -11,7 +11,7 @@ class KillCreatureCredit : public CreatureScript
 {
 public: KillCreatureCredit() : CreatureScript("KillCreatureCredit"){ }
 
-	struct GGW_GUILD_CANNON_AI : public ScriptedAI
+	struct KillCreatureCredit_AI : public ScriptedAI
 	{
 		void JustDied(Unit* unit)
 		{
@@ -23,7 +23,7 @@ public: KillCreatureCredit() : CreatureScript("KillCreatureCredit"){ }
 	}
 	CreatureAI* GetAI(Creature* creature)const override
 	{
-		return new KillCreatureCredit(creature);
+		return new KillCreatureCredit_AI(creature);
 	}
 };
 
