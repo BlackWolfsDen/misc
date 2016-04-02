@@ -1,9 +1,15 @@
 // By slp13at420 of EmuDevs.com
 
-std::string DB_COLUMN = "reward_count"; // this is the name of the element in auth.account you added to store this value. use default '0' so it wont need another block for OnAccountCreation.
-std::array<uiny32, uint32>CKR;
+#include "Player.h"
+#include "PlayerAI\PlayerAI.h"
+#include "AccountMgr.h"
+#include "ScriptMgr.h"
+#include "WorldSession.h"
 
-void StoreCredit(uint32 id, uint32 count);
+std::string DB_COLUMN = "reward_count"; // this is the name of the element in auth.account you added to store this value. use default '0' so it wont need another block for OnAccountCreation.
+std::unordered_map<uint32, uint32>CKR;
+
+void StoreCredit(uint32 id, uint32 count)
 {
 	LoginDatabase.PExecute("UPDATE account SET `%s` = '%u' WHERE `id` = '%u';", DB_COLUMN.c_str(), count, id);
 };
@@ -23,7 +29,7 @@ public: KillCreatureCredit_Account_Events() : AccountScript("KillCreatureCredit_
 	{
 		if (accountId > 0)
 		{
-			QueryResult CKRPlayerQery = WorldDatabase.Query("SELECT `%s` FROM account WHERE `id` = '%u';", DB_COLUMN.c_str(), accountId);
+			QueryResult CKRPlayerQery = LoginDatabase.PQuery("SELECT `%s` FROM `account` WHERE `id` = '%u';", DB_COLUMN.c_str(), accountId);
 
 			if (CKRPlayerQery)
 			{
@@ -33,7 +39,8 @@ public: KillCreatureCredit_Account_Events() : AccountScript("KillCreatureCredit_
 					uint32 Reward_Count = fields[0].GetUInt32();
 
 					CKR[accountId] = Reward_Count;
-				}
+
+				} while (CKRPlayerQery->NextRow());
 			}
 		}
 	}
@@ -43,23 +50,14 @@ class KillCreatureCredit : public PlayerScript
 {
 public: KillCreatureCredit() : PlayerScript("KillCreatureCredit"){ }
 
-		struct KillCreatureCredit_AI : public ScriptedAI
+	void OnCreatureKill(Player* killer, Creature* killed)
 	{
-		void JustDied(Unit* unit)
-		{
-			if (unit->ToPlayer())
-			{
-				StoreCredit(player->GetSession()->GetAccountId(), 2);
-			}
-		}
-	}
-	CreatureAI* GetAI(Creature* creature)const override
-	{
-		return new KillCreatureCredit(creature);
+		StoreCredit(killer->GetSession()->GetAccountId(), 2);
 	}
 };
 
 void AddSC_KillCreatureRewarder()
 {
+	new KillCreatureCredit_Account_Events;
 	new KillCreatureCredit;
 }
