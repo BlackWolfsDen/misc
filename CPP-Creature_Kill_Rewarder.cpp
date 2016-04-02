@@ -39,11 +39,11 @@ public: KillCreatureCredit_Account_Events() : AccountScript("KillCreatureCredit_
 	}
 };
 
-class KillCreatureCredit : public CreatureScript
+class KillCreatureCredit : public PlayerScript
 {
-public: KillCreatureCredit() : CreatureScript("KillCreatureCredit"){ }
+public: KillCreatureCredit() : PlayerScript("KillCreatureCredit"){ }
 
-	struct GGW_GUILD_CANNON_AI : public ScriptedAI
+		struct KillCreatureCredit_AI : public ScriptedAI
 	{
 		void JustDied(Unit* unit)
 		{
@@ -61,6 +61,5 @@ public: KillCreatureCredit() : CreatureScript("KillCreatureCredit"){ }
 
 void AddSC_KillCreatureRewarder()
 {
-	newKillCreatureCredit_Account_Events;
 	new KillCreatureCredit;
 }
