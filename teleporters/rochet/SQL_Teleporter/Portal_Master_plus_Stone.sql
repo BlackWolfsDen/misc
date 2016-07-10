@@ -1,6 +1,6 @@
 /*
 Portal Master
-By Rochet2 and the_original_badot fitted by Black Wolf for the Wolf Den
+By Rochet2 and the_original_badot fitted by slp13at420 for the Wolf Den player stone item.
 Downloaded from http://projectcode.zzl.org/
 Bugs and contact with E-mail: Rochet2@post.com
 */
