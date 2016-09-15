@@ -23,7 +23,7 @@ if (timer_result)
 // To HERE //
 
 // A stand alone function to cutdown on lines dont need the same code over n over for timers. just make 1 and key it :)
-bool CheckTimer(uint8 timer_id, Player* player)
+bool CheckTimer(uint8 timer_id, ChatHandler* handler)
 {
 	uint32 account_id = handler->GetSession()->GetAccountId();
 
@@ -41,7 +41,7 @@ bool CheckTimer(uint8 timer_id, Player* player)
 		{
 			// This result means no cooldown left so return true
 
-			LoginDatabase.PExecute("UPDATE `account_access` SET `KickCooldown` = '%u' WHERE `id` = '%d';", VipTimers[account_id].test_time, account_id);
+			LoginDatabase.PExecute("UPDATE `account_access` SET `KickCooldown` = '%d' WHERE `id` = '%d';", VipTimers[account_id].test_time, account_id);
 			return true;
 		}
 	}
@@ -50,9 +50,8 @@ bool CheckTimer(uint8 timer_id, Player* player)
 // using the standalone checker inside a command block
 static bool HandleVIPTestCommand(ChatHandler* handler, const char* args)
 {
-	Player* player = handler->GetSession()->GetPlayer();
 
-	if (CheckTimer(1, player))
+	if (CheckTimer(1, handler))
 	{
 		// do stuff
 	}
