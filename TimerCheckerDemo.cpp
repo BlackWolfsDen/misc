@@ -31,7 +31,7 @@ bool CheckTimer(uint8 timer_id, ChatHandler* handler)
 
 	if (timer_id == 1)
 	{
-		if ((current_test_time < (VipTimers[account_id].test_time + VIPTest_Cooldown))) // (VipTimers[account_id].test_time == 0) || 
+		if ((current_test_time < (VipTimers[account_id].test_time + VIPTest_Cooldown)))
 		{
 			// This result means he has a cooldown so return false
 
