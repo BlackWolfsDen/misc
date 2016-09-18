@@ -2,6 +2,7 @@
 #include "Language.h"
 #include "Player.h"
 #include "ScriptMgr.h"
+#include "Unit.h"
 
 struct TimerElements
 {
@@ -63,10 +64,15 @@ public:
 
 	std::vector<ChatCommand> GetCommands() const
 	{
+		static std::vector<ChatCommand> VIPNpcCommandTable =
+		{
+			{ "info", rbac::RBAC_IN_GRANTED_LIST, true, &HandleVIPNpcInfoCommand, "" },
+		};
+
 		static std::vector<ChatCommand> VIPcommandTable =
 		{
 			{ "kick", rbac::RBAC_IN_GRANTED_LIST, true, &HandleVIPKickPlayerCommand, "" },
-
+			{ "npc", rbac::RBAC_IN_GRANTED_LIST, false, nullptr, "", VIPNpcCommandTable },
 		};
 
 		static std::vector<ChatCommand> commandTable =
@@ -134,6 +140,30 @@ public:
 				UpdateTimer("KickCooldown", current_time, accountId);
 			}
 		}
+		return true;
+	}
+
+	static bool HandleVIPNpcInfoCommand(ChatHandler* handler, const char* args)
+	{
+		Player* player = handler->GetSession()->GetPlayer();
+		Creature* target = handler->getSelectedCreature();
+
+			if (target)
+			{
+				uint64 TtlRespawnDelay = target->GetRespawnDelay();
+				int64 curRespawnDelay = target->GetRespawnTimeEx() - time(NULL);
+
+				if (curRespawnDelay < 0)
+					curRespawnDelay = 0;
+
+				std::string defRespawnDelayStr = secsToTimeString(TtlRespawnDelay, false);
+				std::string curRespawnDelayStr = secsToTimeString(uint64(curRespawnDelay), false);
+
+				handler->PSendSysMessage("Creature info:");
+				handler->PSendSysMessage("____________");
+				handler->PSendSysMessage(LANG_COMMAND_RAWPAWNTIMES, defRespawnDelayStr.c_str(), curRespawnDelayStr.c_str());
+			}
+		
 		return true;
 	}
 };
