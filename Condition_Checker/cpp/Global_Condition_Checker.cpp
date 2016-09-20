@@ -40,6 +40,20 @@ bool CheckPlayerCriteria(uint64 bitmask, Player* player)
 
 	bool return_type = true;
 
+	if ((bitmask - 1024) >= 0) //
+	{
+		bitmask = bitmask - 1024;
+
+		//	return_type = false;
+	}
+
+	if ((bitmask - 512) >= 0) //
+	{
+		bitmask = bitmask - 512;
+
+		//		return_type = false;
+	}
+
 	if ((bitmask - 256) >= 0) //
 	{
 		bitmask = bitmask - 256;
@@ -47,45 +61,64 @@ bool CheckPlayerCriteria(uint64 bitmask, Player* player)
 		//		return_type = false;
 	}
 
-	if ((bitmask - 128) >= 0) //
+	if ((bitmask - 128) >= 0) // Is Game Master
 	{
-		bitmask = bitmask - 128;
+		if (player->IsGameMaster())
+		{
+			bitmask = bitmask - 128;
 
-		//		return_type = false;
+			return_type = false;
+		}
 	}
 
+	if ((bitmask - 64) >= 0) // Is In LFG Dungeon
 	{
-		bitmask = bitmask - 64;
+		if (player->inRandomLfgDungeon())
+		{
+			bitmask = bitmask - 64;
 
-		return_type = false;
+			return_type = false;
+		}
 	}
 
-	if ((bitmask - 32) >= 0) //
+	if ((bitmask - 32) >= 0) // In Instance
 	{
-		bitmask = bitmask - 32;
+		if (player->GetInstanceId() != 0)
+		{
+			bitmask = bitmask - 32;
 
-		//		return_type = false;
+			return_type = false;
+		}
 	}
 
-	if ((bitmask - 16) >= 0) //
+	if ((bitmask - 16) >= 0) // In Arena
 	{
-		bitmask = bitmask - 16;
+		if (player->InArena())
+		{
+			bitmask = bitmask - 16;
 
-		//		return_type = false;
+			return_type = false;
+		}
 	}
 
-	if ((bitmask - 8) >= 0) //
+	if ((bitmask - 8) >= 0) // In BattleGround
 	{
-		bitmask = bitmask - 8;
+		if (player->InBattleground())
+		{
+			bitmask = bitmask - 8;
 
-		//		return_type = false;
+			return_type = false;
+		}
 	}
 
-	if ((bitmask - 4) >= 0) //
+	if ((bitmask - 4) >= 0) // In Combat
 	{
-		bitmask = bitmask - 4;
+		if(player->IsInCombat())
+		{
+			bitmask = bitmask - 4;
 
-		//		return_type = false;
+			return_type = false;
+		}
 	}
 
 	if ((bitmask - 2) >= 0) // Dead
