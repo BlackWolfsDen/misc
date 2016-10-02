@@ -10,7 +10,7 @@ function retarded(event, player, message, Type, lang)
 local k = 0;
 local ChatCache = {};
 
-	for word in string.gmatch(msg, "[%w_]+") do
+	for word in string.gmatch(message, "[%w_]+") do
 	        k = k+1
 	        ChatCache[k] = word;
 	end
