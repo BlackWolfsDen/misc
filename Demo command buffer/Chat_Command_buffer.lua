@@ -7,15 +7,30 @@ local vip = {};
 	
 function retarded(event, player, message, Type, lang)
 
-	if(message:lower() == "test")then
+local k = 0;
+local ChatCache = {};
 
-		for k, v in ipairs(vip["Buffs"])do
-			player:AddAura(v, player);
+	for word in string.gmatch(msg, "[%w_]+") do
+	        k = k+1
+	        ChatCache[k] = word;
+	end
 
-print("vip[Buffs]["..k.."] = "..vip["Buffs"][k].." = "..v); -- demo of how to use the 'print' command to help test and trouble-shoot
-
+	if(ChatCache[1] == "vip")then
+	
+		if(ChatCache[2] == "buff")then
+		
+			for k, v in ipairs(vip["Buffs"])do
+				player:AddAura(v, player);
+	
+	print("vip[Buffs]["..k.."] = "..vip["Buffs"][k].." = "..v); -- demo of how to use the 'print' command to help test and trouble-shoot
+	
+			end
+			player:SendBroadcastMessage("You've been buffed!");
 		end
-		player:SendBroadcastMessage("You've been buffed!");
+
+		if(ChatCache[2] == "repair")then
+		-- do stuff;
+		end
  	end
  
 	local etc1variablestring = "Etc1";
