@@ -1,6 +1,6 @@
 -- this is a player gossip menu script that allows a player to have a second custom Home_Bind
 -- that allows them to update ANYWHERE ....
--- by slp13at420 of EmuDevs.com
+-- by Grumbo aKa slp13at420 of EmuDevs.com
 -- for Unknown96 of EmuDevs.com
 
 local ChatMsg1 = "#Menu";

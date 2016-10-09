@@ -1,5 +1,5 @@
 -- request by 125125 of EmuDevs.com
--- created by slp13at420 of EmuDevs.com 
+-- created by Grumbo aKa slp13at420 of EmuDevs.com 
 
 local Crespawntimer = {};
 local message = "#respawn" -- trigger message

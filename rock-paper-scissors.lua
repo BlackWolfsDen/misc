@@ -3,7 +3,7 @@ Rock, Paper, Scissor Game
 Original script made by Billtheslug.
 Updated and converted to eluna by ToxicDev.
 Version 1.1
-modified by slp13at420 to gamble gold.
+modified by Grumbo aKa slp13at420 to gamble gold.
 Version 1.2
 ]]--
 

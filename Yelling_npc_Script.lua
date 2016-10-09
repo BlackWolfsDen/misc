@@ -1,6 +1,6 @@
 -- Request by Xaver
 -- Code by Rochet2 of EmuDevs
--- Modified by slp13at420 of EmuDevs
+-- Modified by Grumbo aKa slp13at420 of EmuDevs
 -- drunken slurred outbursts by Bender
 
 local npcid = 3100 -- 10000

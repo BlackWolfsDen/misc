@@ -3,6 +3,7 @@
 -- hey you wanted a fix so either wait, or use Eluna.  --?GOT ELUNA?--
 -- just add to your scripts folder and restart . any newly created guild created will get added to the sql table.
 -- or a if a player logs in belonging to a guild not yet added. then this will add it.
+
 GuildLevel = {};
 
 local function LoadGL()

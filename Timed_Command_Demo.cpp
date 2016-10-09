@@ -1,3 +1,6 @@
+/*
+By Grumbo aKa slp13at420	of EmuDevs.com
+*/
 #include "Chat.h"
 #include "Language.h"
 #include "Player.h"

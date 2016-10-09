@@ -2,7 +2,7 @@
 -- this is supposed to hook the script to creature event 8 on receive emote
 -- when a pre-determined creature recieves an emote then it will return a random emote
 -- ooorrrrr... the creature may get offended and just attack you.... its a work in progress
--- slp13at420 emudevs.com
+-- by Grumbo aKa slp13at420 emudevs.com
 
 print("+-+-+-+-+-+")
 

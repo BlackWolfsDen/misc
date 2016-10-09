@@ -1,4 +1,4 @@
-// By slp13at420 of EmuDevs.com
+// By Grumbo aKa slp13at420 of EmuDevs.com
 
 #include "AccountMgr.h"
 #include "chat.h"
