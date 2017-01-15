@@ -7,10 +7,10 @@ local function ResetOnDuelEnd(event, winner, loser, _)
 
 	if(event == event_id)then
 		winner:ResetAllCooldowns();
-		winner:SetHealth(pWinner:GetMaxHealth());
+		winner:SetHealth(winner:GetMaxHealth());
 		
 		loser:ResetAllCooldowns();
-		loser:SetHealth(pLoser:GetMaxHealth());
+		loser:SetHealth(loser:GetMaxHealth());
 	end
 end
 
